@@ -36,9 +36,13 @@
     <div id="loggedin">
       <div id="user-profile">
       </div>
+
+      <div id="embeded-spotify-player">
+      </div>
       <div id="oauth">
       </div>
       <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
+
     </div>
   </div>
 
@@ -62,12 +66,21 @@
     </div>
   </script>
 
+  <script id="embeded-player-template" type="text/x-handlebars-template">
+    <iframe src="https://embed.spotify.com/?uri=spotify:user:{{clientId}}:playlist:{{playlistId}}&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+  </script>
+
   <script id="oauth-template" type="text/x-handlebars-template">
     <h2>oAuth info</h2>
     <dl class="dl-horizontal">
       <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
       <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
     </dl>
+<<<<<<< HEAD
+  </script>
+
+=======
   </script>-->
+>>>>>>> fed5cbf12f7743f55a29dffba470c4cf7a8fde36
 </body>
 </html>

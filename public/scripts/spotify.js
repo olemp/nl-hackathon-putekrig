@@ -141,6 +141,13 @@ var spot = {};
 
         access_token = params.access_token;
         refresh_token = params.refresh_token;
+
+        try {
+            sessionStorage.setItem('spotify.access_token', access_token);
+            sessionStorage.setItem('spotify.refresh_token', refresh_token);
+        } catch(e) {};
+
+
         error = params.error;
 
         if (error) {

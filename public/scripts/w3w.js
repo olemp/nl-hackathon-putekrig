@@ -9,6 +9,43 @@ var w3w = {};
  * Populates the w3w namespace with utility functions
  */
 (function(w3w){
+    /**
+     *
+     */
+    var geoWatcher;
+
+    /**
+     * Starts a one-minute polling of what3words, using the current Position
+     */
+    w3w.startGeoWatcher = function() {
+        if ('geolocation' in navigator) {
+            // geolocation is available
+            navigator.geolocation.getCurrentPosition(function (position) {
+                w3w.getThreeWords(position, {
+                    success: function (words) {
+                        console.log(words);
+                    }
+                });
+            });
+
+            geoWatcher = setTimeout(function() {
+
+                w3w.startGeoWatcher();
+
+            }, 60000); // poll again in one minute
+        } else {
+            // geolocation IS NOT available
+            console.error('No geolocation makes me a sad panda :-(');
+        }
+    };
+
+    /**
+     * Cancels the timeout, stopping new requests from being made to w3w
+     */
+    w3w.stopGeoWatcher = function() {
+        clearTimeout(geoWatcher);
+
+    };
 
     /**
      * Performs a jQuery AJAX call to the w3w api, getting three words from the given position object

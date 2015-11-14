@@ -18,7 +18,7 @@
             var trackToAdd = response.tracks.items[0];
 
             // Don't repeatedly add the same track if the user is stationary
-            if(lastTrackAdded.uri !== trackToAdd.uri) {
+            if(!lastTrackAdded || lastTrackAdded.uri !== trackToAdd.uri) {
                 spot.addTrackToPlaylist(trackToAdd);
                 lastTrackAdded = trackToAdd;
             }

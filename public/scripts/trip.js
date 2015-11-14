@@ -8,14 +8,18 @@ app.config(
 )
 app.controller('tripCtrl', function($scope, Parse) {
 	$scope.map = { 
-		center: { latitude: 45, longitude: -73 }, 
-		zoom: 8
+		center: { latitude: 0, longitude: 0 }, 
+		zoom: 12
 	};
 	
      Parse.provider('Trip/').get(document.location.pathname.split("/").slice(-1)[0])
 		.success(function(data) {
 			$scope.trip = data;
-			console.log(data);
+			var firstSong = data.Songs[0];
+			
+			if(firstSong) {
+				$scope.map.center = firstSong.Fetched_Coords;
+			}
 		}).
 		error(function(response) {
 			

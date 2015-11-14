@@ -32,7 +32,7 @@
       </ui-gmap-google-map>
     </div>
     <div class="col-md-4">
-      <h3><span class="glyphicon glyphicon-music"></span> Songs played</h3>
+      <h3><span class="glyphicon glyphicon-music"></span> Songs collected</h3>
       <table class="table striped">        
       <thead>
         <tr>
@@ -47,6 +47,12 @@
         </tr>
         </tbody>
       </table>
+      
+      <h3><span class="glyphicon glyphicon-time"></span> Time</h3>
+      <ul class="list-group">
+          <li class="list-group-item"><b>Start</b><span class="pull-right">{{trip.createdAt}}</span></li>       
+          <li class="list-group-item"><b>End</b><span class="pull-right">{{trip.createdAt}}</span></li>       
+      </ul>
     </div>
   </div> <!-- row -->
 </div>

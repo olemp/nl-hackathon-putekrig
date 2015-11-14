@@ -38,7 +38,7 @@ var spot = {};
      */
     spot.loadPlaylistWithName = function(name) {
         localPlaylist = [];
-        
+
         $.ajax({
             url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
             data: {

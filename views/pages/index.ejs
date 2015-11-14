@@ -40,7 +40,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" data-ng-show="playlist">
     <h3><span class="glyphicon glyphicon-play-circle"></span> Playlist</h3>
       <table class="table striped">        
       <thead>
@@ -53,12 +53,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="s in trip.Songs">
-          <td>Pink Floyd</td>
-          <td>Wish you were here</td>
-          <td>Wish you were here</td>
-          <td>12 minutes ago</td>
-          <td>4:43</td>
+        <tr data-ng-repeat="track in playlist">
+          <td>{{ track.artists[0].name }}</td>
+          <td>{{ track.name }}</td>
+          <td>{{ track.album.name }}</td>
+          <td>{{ track.timeAdded }}</td>
+          <td>{{ track.duration_ms }}</td>
         </tr>
         </tbody>
       </table>

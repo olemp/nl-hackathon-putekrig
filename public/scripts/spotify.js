@@ -169,22 +169,6 @@ var spot = {};
                 $('#login').show();
                 $('#loggedin').hide();
             }
-
-            document.getElementById('obtain-new-token').addEventListener('click', function() {
-                $.ajax({
-                    url: '/refresh_token',
-                    data: {
-                        'refresh_token': refresh_token
-                    }
-                }).done(function(data) {
-                    access_token = data.access_token;
-
-                    try {
-                        sessionStorage.setItem('spotify.accessToken', access_token);
-                        sessionStorage.setItem('spotify.refreshToken', refresh_token);
-                    }catch (e) {};
-                });
-            }, false);
         }
 
 

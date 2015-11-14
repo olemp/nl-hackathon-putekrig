@@ -8,6 +8,9 @@ var spot = {};
         refresh_token,
         error;
 
+    var embededPlayerTemplate,
+        embededPlayerPlaceholder;
+
     var clientId;
     var playlistId;
 
@@ -46,6 +49,7 @@ var spot = {};
             for(var i=0; i<listPlaylist.length; i++) {
                 if(listPlaylist[i].name == playlistName) {
                     playlistId = listPlaylist[i].id;
+                    renderEmbededPlaylist();
                     return;
                 }
             }
@@ -53,6 +57,13 @@ var spot = {};
             // Could not find our custom playlist for current user, lets create it!
             createCustomPlaylist(playlistName);
         });
+    }
+
+    function renderEmbededPlaylist() {
+        var playlist = new Object();
+        playlist.clientId = clientId;
+        playlist.playlistId = playlistId;
+        embededPlayerPlaceholder.innerHTML = embededPlayerTemplate(playlist);
     }
 
     /**
@@ -72,6 +83,7 @@ var spot = {};
             }),
         }).done(function(data) {
             playlistId = data.id;
+            renderEmbededPlaylist();
         });
     }
 
@@ -114,6 +126,8 @@ var spot = {};
                 'Authorization': 'Bearer ' + access_token
             },
             data: {},
+        }).done(function() {
+            renderEmbededPlaylist();
         });
     };
 
@@ -121,6 +135,10 @@ var spot = {};
         var userProfileSource = document.getElementById('user-profile-template').innerHTML,
             userProfileTemplate = Handlebars.compile(userProfileSource),
             userProfilePlaceholder = document.getElementById('user-profile');
+
+        var embededPlayerSource = document.getElementById('embeded-player-template').innerHTML;
+        embededPlayerTemplate = Handlebars.compile(embededPlayerSource);
+        embededPlayerPlaceholder = document.getElementById('embeded-spotify-player');
 
         var oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
@@ -149,6 +167,10 @@ var spot = {};
                         'Authorization': 'Bearer ' + access_token
                     },
                     success: function(response) {
+                        try {
+                            sessionStorage.setItem('spotify.userdata', JSON.stringify(response));
+                        }catch(e){};
+
                         userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                         clientId = response.id;
                         loadPlaylistId();
@@ -175,9 +197,27 @@ var spot = {};
                         access_token: access_token,
                         refresh_token: refresh_token
                     });
+
+                    try {
+                        sessionStorage.setItem('spotify.accessToken', access_token);
+                        sessionStorage.setItem('spotify.refreshToken', refresh_token);
+                    }catch (e) {};
                 });
             }, false);
         }
+
+
+        $("body").click(function() {
+            var iframe = $('iframe').contents();
+
+            if (iframe.find(".music-playing")[0]){
+                // Do something if class exists
+                alert("playing!");
+            } else {
+                // Do something if class does not exist
+                alert("paused!!!")
+            }
+        });
     };
 
     return spot;

@@ -52,6 +52,7 @@ var spot = {};
             for(var i=0; i<listPlaylist.length; i++) {
                 if(listPlaylist[i].name == playlistName) {
                     playlistId = listPlaylist[i].id;
+                    console.log('Playlist ID', playlistId);
                     return;
                 }
             }
@@ -78,6 +79,8 @@ var spot = {};
             }),
         }).done(function(data) {
             playlistId = data.id;
+            console.log('Playlist ID createCustom', playlistId);
+
         });
     }
 
@@ -137,6 +140,7 @@ var spot = {};
     };
 
     spot.getPlaylistId = function () {
+        console.log('Get ID', playlistId);
         return playlistId;
     };
 

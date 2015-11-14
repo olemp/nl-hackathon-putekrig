@@ -19,11 +19,20 @@ var spot = {};
         $.ajax({
             url: url,
             data: {
-                q: query.replace(' ', '+'),
+                q: query,
                 type: 'track',
                 limit: '5'
             }
         }).done(success);
+    };
+
+    /**
+     * Takes a track object and adds it to the playlist
+     * @param track
+     * @param playlist
+     */
+    spot.addTrackToPlaylist = function (track) {
+
     };
 
     return spot;

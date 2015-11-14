@@ -16,21 +16,23 @@ var w3w = {};
 
     /**
      * Starts a one-minute polling of what3words, using the current Position
+     *
+     * @param onGetPosition Function that gets called whenever getThreeWords returns successfully
      */
-    w3w.startGeoWatcher = function() {
+    w3w.startGeoWatcher = function(onGetPosition) {
         if ('geolocation' in navigator) {
             // geolocation is available
             navigator.geolocation.getCurrentPosition(function (position) {
                 w3w.getThreeWords(position, {
                     success: function (words) {
-                        console.log(words);
+                        onGetPosition(words);
                     }
                 });
             });
 
             geoWatcher = setTimeout(function() {
 
-                w3w.startGeoWatcher();
+                w3w.startGeoWatcher(onGetPosition);
 
             }, 60000); // poll again in one minute
         } else {

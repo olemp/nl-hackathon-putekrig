@@ -59,11 +59,16 @@
     <div id="loggedin">
       <div id="user-profile">
       </div>
+
+      <div id="embeded-spotify-player">
+      </div>
       <div id="oauth">
       </div>
       <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
 
       <button class="btn btn-default" id="test-playlist">test-playlist</button>
+
+
     </div>
   </div>
 
@@ -85,6 +90,10 @@
         </dl>
       </div>
     </div>
+  </script>
+
+  <script id="embeded-player-template" type="text/x-handlebars-template">
+    <iframe src="https://embed.spotify.com/?uri=spotify:user:{{clientId}}:playlist:{{playlistId}}&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
   </script>
 
   <script id="oauth-template" type="text/x-handlebars-template">
@@ -117,6 +126,11 @@
       var userProfileSource = document.getElementById('user-profile-template').innerHTML,
               userProfileTemplate = Handlebars.compile(userProfileSource),
               userProfilePlaceholder = document.getElementById('user-profile');
+
+
+      var embededPlayerSource = document.getElementById('embeded-player-template').innerHTML,
+              embededPlayerTemplate = Handlebars.compile(embededPlayerSource),
+              embededPlayerPlaceholder = document.getElementById('embeded-spotify-player');
 
       var oauthSource = document.getElementById('oauth-template').innerHTML,
               oauthTemplate = Handlebars.compile(oauthSource),
@@ -198,6 +212,7 @@
             for(var i=0; i<listPlaylist.length; i++) {
               if(listPlaylist[i].name == playlistName) {
                 playlistId = listPlaylist[i].id;
+                renderEmbededPlaylist();
                 return;
               }
             }
@@ -205,6 +220,13 @@
             // Could not find our custom playlist for current user, lets create it!
             createCustomePlaylist(playlistName);
           });
+        }
+
+        function renderEmbededPlaylist() {
+          var playlist = new Object();
+          playlist.clientId = clientId;
+          playlist.playlistId = playlistId;
+          embededPlayerPlaceholder.innerHTML = embededPlayerTemplate(playlist);
         }
 
         function createCustomePlaylist(playlistName) {
@@ -234,7 +256,8 @@
 
             },
           }).done(function(data) {
-            playlistId = data.id;
+            // Song added, render embed code again.
+            renderEmbededPlaylist();
           });
         }
 

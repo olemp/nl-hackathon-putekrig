@@ -113,6 +113,7 @@ var spot = {};
      * @param playlist
      */
     spot.addTrackToPlaylist = function (track) {
+        track.timeAdded = new Date();
         localPlaylist.push(track);
         $(document).trigger('playlist-updated');
 

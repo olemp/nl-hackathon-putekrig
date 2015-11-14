@@ -37,9 +37,9 @@ var spot = {};
     }
 
     /**
-     * Gets the playlist ID for the NL-PK playlist
+     * Gets the playlist ID for the given playlist, or creates it if it does not exist
      */
-    function loadPlaylistId() {
+    spot.loadPlaylistWithName = function(name) {
         $.ajax({
             url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
             data: {
@@ -47,12 +47,11 @@ var spot = {};
             }
         }).done(function(data) {
 
-            var playlistName = "NL-PK";
+            var playlistName = name || "Songwalk";
             var listPlaylist = data.items;
             for(var i=0; i<listPlaylist.length; i++) {
                 if(listPlaylist[i].name == playlistName) {
                     playlistId = listPlaylist[i].id;
-                    renderEmbededPlaylist();
                     return;
                 }
             }
@@ -60,13 +59,6 @@ var spot = {};
             // Could not find our custom playlist for current user, lets create it!
             createCustomPlaylist(playlistName);
         });
-    }
-
-    function renderEmbededPlaylist() {
-        var playlist = new Object();
-        playlist.clientId = clientId;
-        playlist.playlistId = playlistId;
-        embededPlayerPlaceholder.innerHTML = embededPlayerTemplate(playlist);
     }
 
     /**
@@ -86,7 +78,6 @@ var spot = {};
             }),
         }).done(function(data) {
             playlistId = data.id;
-            renderEmbededPlaylist();
         });
     }
 
@@ -132,8 +123,6 @@ var spot = {};
                 'Authorization': 'Bearer ' + access_token
             },
             data: {},
-        }).done(function() {
-            renderEmbededPlaylist();
         });
     };
 
@@ -147,11 +136,6 @@ var spot = {};
     };
 
     spot.init = function() {
-        var embededPlayerSource = document.getElementById('embeded-player-template').innerHTML;
-
-        embededPlayerTemplate = Handlebars.compile(embededPlayerSource);
-        embededPlayerPlaceholder = document.getElementById('embeded-spotify-player');
-
         var params = getHashParams();
 
         access_token = params.access_token;
@@ -181,7 +165,6 @@ var spot = {};
                         }catch(e){};
 
                         clientId = response.id;
-                        loadPlaylistId();
 
                         $('#login').hide();
                         $('#loggedin').show();

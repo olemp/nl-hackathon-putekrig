@@ -12,4 +12,10 @@ app.controller('mainCtrl', function($scope) {
 		$scope.$apply();
 	});
 
+	$scope.makePlaylist = function() {
+		if($scope.playlistName && $scope.playlistName.trim() !== '') {
+			spot.loadPlaylistWithName($scope.playlistName);
+		}
+	};
+
 });

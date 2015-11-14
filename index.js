@@ -17,6 +17,7 @@ app.get('/history', function(request, response) {
 });
 app.get('/history/:id', function(request, response) {
   response.render('pages/trip');
+  response.send(arguments);
 });
 
 app.listen(app.get('port'), function() {

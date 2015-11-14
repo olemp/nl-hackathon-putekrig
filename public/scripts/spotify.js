@@ -114,8 +114,6 @@ var spot = {};
                 'Authorization': 'Bearer ' + access_token
             },
             data: {},
-        }).done(function(data) {
-            playlistId = data.id;
         });
     };
 

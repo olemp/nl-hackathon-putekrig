@@ -54,7 +54,7 @@ app.controller('tripCtrl', function($scope, Parse) {
 		zoom: 8
 	};
 	
-     Parse.provider('Trip/').get('Jtlfi6JtCK')
+     Parse.provider('Trip/').get(document.location.pathname.split("/").slice(-1)[0])
 	.success(function(data) {
 		$scope.trip = data;
 	}).

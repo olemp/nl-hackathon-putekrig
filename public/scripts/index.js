@@ -21,4 +21,8 @@ app.controller('mainCtrl', function($scope) {
 		spot.loadPlaylistWithName($scope.playlistName);
 	};
 
+	$scope.stopAdding = function () {
+		$scope.stopped = true;
+	};
+
 });

@@ -4,6 +4,7 @@
   <% include ../partials/header.ejs %>
   <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   <script type="text/javascript" src="/scripts/trip.js"></script>
+  <script type="text/javascript" src="/scripts/parse.factory.js"></script>
   <style type="text/css">
     .angular-google-map-container { height: 400px; }
   </style>
@@ -26,7 +27,7 @@
     <div class="col-md-8">
       <h3><span class="glyphicon glyphicon-map-marker"></span> On the map!</h3>
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-          <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Coords" idKey="$index">
+          <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Fetched_Coords" idKey="$index">
           </ui-gmap-marker>
       </ui-gmap-google-map>
     </div>

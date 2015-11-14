@@ -2,6 +2,7 @@
 <html data-ng-app="home">
 <head>
   <% include ../partials/header.ejs %>
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   <style type="text/css">
     .jumbotron {
       background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron.jpg');
@@ -21,6 +22,7 @@
   </style>
   <script type="text/javascript" src="/scripts/index.js"></script>
   <script type="text/javascript" src="/scripts/parse.factory.js"></script>
+  <script type="text/javascript" src="/scripts/location.js"></script>
 </head>
 
 <body data-ng-controller="mainCtrl">
@@ -80,8 +82,8 @@
           <td>{{ track.artists[0].name }}</td>
           <td>{{ track.name }}</td>
           <td>{{ track.album.name }}</td>
-          <td>{{ track.timeAdded }}</td>
-          <td>{{ track.duration_ms }}</td>
+          <td>{{ track.timeAdded | amDateFormat:'MMM Do YYYY HH:mm' }}</td>
+          <td>{{ track.duration_ms | trackDuration }}</td>
         </tr>
         </tbody>
       </table>

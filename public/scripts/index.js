@@ -1,5 +1,14 @@
-var app = angular.module('home', []);
-app.controller('mainCtrl', function($scope, Parse) {
+var app = angular.module('home', ['angularMoment']);
+app.filter('trackDuration', function() {
+	return function(ms) {
+		var duration = ms;
+		var milliseconds = (duration % 1000); duration = Math.floor(duration/1000);
+		var seconds = (duration % 60); duration = Math.floor(duration/60);
+		var minutes = (duration % 60); duration = Math.floor(duration/60);
+		return minutes + ":" + seconds;
+	};
+})
+app.controller('mainCtrl', function($scope, Parse, Location) {
 
 	var lastTrackAdded;
 
@@ -16,6 +25,30 @@ app.controller('mainCtrl', function($scope, Parse) {
 			if(!lastTrackAdded || lastTrackAdded.uri !== trackToAdd.uri) {
 				spot.addTrackToPlaylist(trackToAdd);
 				lastTrackAdded = trackToAdd;
+				
+				Location.getCurrent(function(location) {
+					Parse.provider('Trip/').get(sessionStorage.getItem("songwalk-trip-id"))
+						.success(function(data) {
+							var songs = data.Songs;
+							songs.push({
+								Artist: trackToAdd.artists[0].name,
+								Title: trackToAdd.name,
+								TimeAdded: trackToAdd.timeAdded,
+								Url: trackToAdd.uri,
+								Fetched: location.display,
+								Fetched_Coords: location.coords
+							});
+							Parse.provider('Trip/').edit(data.objectId, { 
+								Songs: songs
+							})
+								.success(function(data) {
+									
+								});
+						}).
+						error(function(response) {
+							
+						});
+				});
 			}
 		});
 
@@ -24,7 +57,6 @@ app.controller('mainCtrl', function($scope, Parse) {
 
 	$(document).on('userdata-loaded', function (){
 		$scope.spotify_userdata = JSON.parse(sessionStorage.getItem("spotify.userdata"));
-		console.log($scope.spotify_userdata);
 		$scope.$apply();
 	});
 
@@ -34,29 +66,38 @@ app.controller('mainCtrl', function($scope, Parse) {
 		}
 		$scope.playlist = spot.getPlaylist();
 		$scope.playlistId = spot.getPlaylistId();
-		console.log($scope.playlistId);
 		$scope.$apply();
 	});
 
 	$scope.makePlaylist = function() {
 		spot.loadPlaylistWithName($scope.playlistName);
-		navigator.geolocation.getCurrentPosition(function(geo) {
-			Parse.provider('Trip/').create({ From: '{"latitude": "' + geo.coords.latitude + '" "longitude": "' + geo.coords.longitude + '"}' })
+		Location.getCurrent(function(location) {	
+			Parse.provider('Trip/').create({ 
+				From: location.display,
+				From_Coords: location.coords,
+				Songs: []
+			})
 				.success(function(data) {
+					// Save trip ID
 					sessionStorage.setItem("songwalk-trip-id", data.objectId);
+					
+					// Start spotify job
+					w3w.startGeoWatcher(onGetThreeWordsSuccess);
 				}).
 				error(function(response) {
 					
 				});
-		});
-		w3w.startGeoWatcher(onGetThreeWordsSuccess);
+		});		
 	};
 	
 	$scope.stopAdding = function () {
 		$scope.stopped = true;
 		w3w.stopGeoWatcher();
-		navigator.geolocation.getCurrentPosition(function(geo) {
-			Parse.provider('Trip/').edit(sessionStorage.getItem("songwalk-trip-id"), { To: '{"latitude": "' + geo.coords.latitude + '" "longitude": "' + geo.coords.longitude + '"}' })
+		Location.getCurrent(function(location) {			
+			Parse.provider('Trip/').edit(sessionStorage.getItem("songwalk-trip-id"), { 
+				To: location.display,
+				To_Coords: location.coords
+			})
 				.success(function(data) {
 					sessionStorage.removeItem("songwalk-trip-id");
 				}).

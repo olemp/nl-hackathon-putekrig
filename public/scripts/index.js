@@ -13,6 +13,7 @@ app.controller('mainCtrl', function($scope) {
 		}
 		$scope.playlist = spot.getPlaylist();
 		$scope.playlistId = spot.getPlaylistId();
+		console.log($scope.playlistId);
 		$scope.$apply();
 	});
 

@@ -37,6 +37,8 @@ var spot = {};
      * Gets the playlist ID for the given playlist, or creates it if it does not exist
      */
     spot.loadPlaylistWithName = function(name) {
+        localPlaylist = [];
+        
         $.ajax({
             url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
             data: {

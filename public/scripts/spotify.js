@@ -141,16 +141,22 @@ var spot = {};
     };
 
     spot.init = function() {
-        var params = getHashParams();
-
-        access_token = params.access_token;
-        refresh_token = params.refresh_token;
 
         try {
-            sessionStorage.setItem('spotify.access_token', access_token);
-            sessionStorage.setItem('spotify.refresh_token', refresh_token);
+            access_token = sessionStorage.getItem('spotify.access_token');
+            refresh_token = sessionStorage.getItem('spotify.refresh_token');
         } catch(e) {};
 
+        var params = getHashParams();
+        if(!access_token) {
+            access_token = params.access_token;
+            refresh_token = params.refresh_token;
+
+            try {
+                sessionStorage.setItem('spotify.access_token', access_token);
+                sessionStorage.setItem('spotify.refresh_token', refresh_token);
+            } catch(e) {};
+        }
 
         error = params.error;
 

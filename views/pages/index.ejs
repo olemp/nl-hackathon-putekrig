@@ -15,8 +15,8 @@
     </a>
     <h1>Putekrig</h1>
     <p>Play a song based on your location.</p>
-    <a type="button" class="btn btn-lg btn-default" href="#"><span class="glyphicon glyphicon-flash"></span> Start playing</a>
-    <a type="button" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Stop playing</a>
+    <button type="button" id="start-playing" class="btn btn-lg btn-default" href="#"><span class="glyphicon glyphicon-flash"></span> Start playing</button>
+    <button type="button" id="stop-playing" class="btn btn-lg btn-primary" href="#"><span class="glyphicon glyphicon-download"></span> Stop playing</button>
   </div>
 </div>
 <div class="container">
@@ -128,6 +128,9 @@
               refresh_token = params.refresh_token,
               error = params.error;
 
+      var clientId;
+      var playlistId;
+
       if (error) {
         alert('There was an error during the authentication');
       } else {
@@ -145,6 +148,8 @@
             },
             success: function(response) {
               userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+              clientId = response.id;
+              loadPlaylistId();
 
               $('#login').hide();
               $('#loggedin').show();
@@ -172,45 +177,46 @@
         }, false);
 
         document.getElementById('test-playlist').addEventListener('click', function() {
+          alert(playlistId);
+        }, false);
+
+
+
+        function loadPlaylistId() {
           $.ajax({
-            url: 'https://api.spotify.com/v1/users/olavz/playlists',
+            url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
             data: {
               'access_token': access_token
             }
           }).done(function(data) {
-            console.log(data);
 
-            var appPlaylistExists = false;
             var playlistName = "NL-PK";
             var listPlaylist = data.items;
             for(var i=0; i<listPlaylist.length; i++) {
               if(listPlaylist[i].name == playlistName) {
-                appPlaylistExists = true;
-                break;
+                playlistId = listPlaylist[i].id;
+                return;
               }
             }
 
-            if(!appPlaylistExists) {
-              // Could not find our custom playlist for current user, lets create it!
-              createCustomePlaylist(playlistName);
-            } else {
-              console.log("Playlist " + playlistName + " is in playlists.");
-            }
-
+            // Could not find our custom playlist for current user, lets create it!
+            createCustomePlaylist(playlistName);
           });
-        }, false);
-
+        }
 
         function createCustomePlaylist(playlistName) {
-          console.log("Trying to create playlist.");
           $.ajax({
-            url: 'https://api.spotify.com/v1/users/olavz/playlists',
-            data: {
+            url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
+            method : 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + access_token
+            },
+            data: JSON.stringify({
               'name': playlistName,
               'public' : false
-            }
+            }),
           }).done(function(data) {
-            console.log(data);
+            playlistId = data.id;
           });
         }
 

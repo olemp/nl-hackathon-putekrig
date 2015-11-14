@@ -2,40 +2,37 @@
 <html data-ng-app="history">
 <head>
   <% include ../partials/header.ejs %>  
+  <link rel="stylesheet" type="text/css" href="/stylesheets/history.css"></script>
   <script type="text/javascript" src="/scripts/history.js"></script>
 </head>
 
 <body>
 
-  <% include ../partials/nav.ejs %>
+<% include ../partials/nav.ejs %>
 
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
-      <img src="http://www.naturaworld.com/wp-content/uploads/product_images/pillows/cloud-pillow.png" style="height:50px;">
+     
     </a>
     <h1>History</h1>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6" data-ng-controller="latestTripsCtrl">
+    <div class="col-md-6 latestTrips" data-ng-controller="latestTripsCtrl">
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
       <ul class="list-group">
-        <li class="list-group-item" data-ng-repeat="t in trips"><a data-ng-href="/history/{{t.objectId}}">From {{t.From}} to {{t.To}} playing {{t.Songs.length}} songs.</a></li>
+        <li class="list-group-item" data-ng-repeat="t in trips">
+        <a data-ng-href="/history/{{t.objectId}}">From {{t.From}} to {{t.To}} playing {{t.Songs.length}} songs.</a>
+        <span class="pull-right" style="font-size:12px;"><span class="glyphicon glyphicon-calendar"></span> {{t.createdAt | amDateFormat:'MMMM Do YYYY'}}</span>
+        </li>
       </ul>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" data-ng-controller="statisticsCtrl">
       <h3><span class="glyphicon glyphicon-object-align-bottom"></span> Statistics</h3>
       <ul class="list-group">
-          <li class="list-group-item"><b>Total trips:</b><span class="pull-right">148</span></li>
-          <li class="list-group-item"><b>Songs added:</b><span class="pull-right">5430</span></li>
-          <li class="list-group-item"><b>Trips this week:</b><span class="pull-right">5</span></li>
-          <li class="list-group-item"><b>Songs this week:</b><span class="pull-right">9</span></li>
-          <li class="list-group-item"><b>Trips this month:</b><span class="pull-right">12</span></li>
-          <li class="list-group-item"><b>Songs this month:</b><span class="pull-right">19</span></li>
-          <li class="list-group-item"><b>Trips this year:</b><span class="pull-right">30</span></li>
-          <li class="list-group-item"><b>Songs this year:</b><span class="pull-right">600</span></li>
+          <li class="list-group-item" data-ng-repeat="(key, value) in statistics"><b>{{key}}</b><span class="pull-right">{{value}}</span></li>       
       </ul>
     </div>
   </div> <!-- row -->

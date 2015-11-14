@@ -1,0 +1,15 @@
+.latestTrips ul.list-group {
+	
+}
+.latestTrips ul.list-group li:hover {
+	background-color: #B01302;
+	border-color: #fff;
+}
+
+.latestTrips ul.list-group li:hover a, .latestTrips ul.list-group li:hover span  {
+	color: #fff;
+}
+
+.latestTrips ul.list-group li a {
+	color: #666;
+}

@@ -118,31 +118,16 @@ var spot = {};
     };
 
     spot.init = function() {
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-            userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
-
-        var oauthSource = document.getElementById('oauth-template').innerHTML,
-            oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
-
         var params = getHashParams();
 
         access_token = params.access_token;
         refresh_token = params.refresh_token;
         error = params.error;
 
-
         if (error) {
             alert('There was an error during the authentication');
         } else {
             if (access_token) {
-                // render oauth info
-                oauthPlaceholder.innerHTML = oauthTemplate({
-                    access_token: access_token,
-                    refresh_token: refresh_token
-                });
-
                 $.ajax({
                     url: 'https://api.spotify.com/v1/me',
                     headers: {
@@ -153,7 +138,6 @@ var spot = {};
                             sessionStorage.setItem('spotify.userdata', JSON.stringify(response));
                         }catch(e){};
 
-                        userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                         clientId = response.id;
                         loadPlaylistId();
 
@@ -175,10 +159,6 @@ var spot = {};
                     }
                 }).done(function(data) {
                     access_token = data.access_token;
-                    oauthPlaceholder.innerHTML = oauthTemplate({
-                        access_token: access_token,
-                        refresh_token: refresh_token
-                    });
 
                     try {
                         sessionStorage.setItem('spotify.accessToken', access_token);

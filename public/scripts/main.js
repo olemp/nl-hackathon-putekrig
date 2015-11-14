@@ -3,27 +3,40 @@
 /**
  * Main
  */
-(function() {
+(function () {
     'use strict';
 
-    if ('geolocation' in navigator) {
-        /* geolocation is available */
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var requestSettings = {
-                success: function(words) {
-                    console.log(words);
-                }
-            };
+    /**
+     *
+     */
+    var geoWatcher;
 
-            w3w.getThreeWords(position, requestSettings);
+    if ('geolocation' in navigator) {
+        // geolocation is available
+        getThreeWords();
+    } else {
+        // geolocation IS NOT available
+        console.error('No geolocation makes me a sad panda :-(');
+    }
+
+    function getThreeWords() {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            w3w.getThreeWords(position, {
+                success: onThreeWordsSuccess,
+            });
         });
 
-        /* geoWatcher = navigator.geolocation.watchPosition(function(position) {
-         updateLocation(position);
-         getThreeWords(position);
-         }); */
-    } else {
-        /* geolocation IS NOT available */
-        console.error('No geolocation makes me a sad panda :-(');
+        geoWatcher = setTimeout(getThreeWords, 60000); // poll again in one minute
+    }
+
+    function onThreeWordsSuccess(words) {
+        console.log(words);
+    }
+
+    /**
+     * Cancels the timeout, stopping new requests from being made to w3w
+     */
+    function stopPolling() {
+        clearTimeout(geoWatcher);
     }
 })();

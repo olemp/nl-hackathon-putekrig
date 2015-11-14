@@ -2,6 +2,9 @@
 <html>
 <head>
   <% include ../partials/header.ejs %>
+  <style type="text/css">
+    h4 span:not(.glyphicon) { padding-left: 10px; }
+  </style>
 </head>
 
 <body data-ng-controller="tripCtrl">
@@ -10,17 +13,19 @@
 
 <div class="jumbotron text-center">
   <div class="container">
-    <a href="/" class="lang-logo">
-   
-    </a>
     <h1>How Putekrig works</h1>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li class="list-group-item"><h4><span class="glyphicon glyphicon-play-circle"></span> <span>Start playing</span></h4></li>  
+        <li class="list-group-item"><h4><span class="glyphicon glyphicon-road"></span> <span>Start moving</span></h4></li>  
+        <li class="list-group-item"><h4><span class="glyphicon glyphicon-time"></span> <span>Putekrig pulls another song every 4 minutes based on your location</span></h4></li>
+        <li class="list-group-item"><h4><span class="glyphicon glyphicon-stop"></span> <span>Stop playing</span></h4></li>   
+        <li class="list-group-item"><h4><span class="glyphicon glyphicon-floppy-save"></span> <span>Your trip is stored together with your songs</span></h4></li>   
+      </ul>
     </div>
   </div>
 </div>

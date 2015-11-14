@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="trip">
 <head>
   <% include ../partials/header.ejs %>
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   <script type="text/javascript" src="/scripts/trip.js"></script>
+  <style type="text/css">
+    .angular-google-map-container { height: 400px; }
+  </style>
 </head>
 
-<body>
+<body data-ng-controller="tripCtrl">
 
   <% include ../partials/nav.ejs %>
 
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
+   
     </a>
-    <h1>Trip</h1>
+    <h1>Trip from {{trip.From}} to {{trip.To}}</h1>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-
+    <div class="col-md-8">
+      <h3><span class="glyphicon glyphicon-map-marker"></span> On the map!</h3>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+          <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Coords" idKey="$index">
+          </ui-gmap-marker>
+      </ui-gmap-google-map>
     </div>
-    <div class="col-md-6">
-     
+    <div class="col-md-4">
+      <h3><span class="glyphicon glyphicon-music"></span> Songs played</h3>
+      <table class="table striped">        
+      <thead>
+        <tr>
+          <th>Artist</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="s in trip.Songs">
+          <td>{{s.Artist}}</td>
+          <td>{{s.Title}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div> <!-- row -->
 </div>

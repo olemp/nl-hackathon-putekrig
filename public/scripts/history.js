@@ -1,4 +1,4 @@
-var app = angular.module('history', []);
+var app = angular.module('history', ['angularMoment']);
 app.constant("PARSE_CREDENTIALS", {
         APP_ID: "phPAJ180mxVmSU4CYKnw3xmP1zRl8vQSIiH7XScq",
 		REST_API_KEY: "AEzRWXLnF6cYeggFRK56JoDKnYUHUV9bcjnIrTfA"
@@ -41,7 +41,7 @@ app.factory('Parse',['$http','PARSE_CREDENTIALS',function($http,PARSE_CREDENTIAL
 		}
 	}
 }])
-app.controller('latestTripsCtrl', function($scope, Parse) {
+app.controller('latestTripsCtrl', function($scope, Parse) {	
     Parse.provider('Trip/').getAll()
 	.success(function(data) {
 		$scope.trips = data.results;
@@ -51,5 +51,14 @@ app.controller('latestTripsCtrl', function($scope, Parse) {
 	});
 });
 app.controller('statisticsCtrl', function($scope) {
-    
+    $scope.statistics = {
+		"Total trips": 148,
+		"Songs added": 5430,
+		"Trips this week": 5,
+		"Songs this week": 9,
+		"Trips this month": 12,
+		"Songs this month": 19,
+		"Trips this year": 30,
+		"Songs this year": 600
+	};
 });

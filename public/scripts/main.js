@@ -6,12 +6,15 @@
 (function () {
     'use strict';
 
-    $('#start-playing').click(function () {
-       w3w.startGeoWatcher();
-    });
+
+    $(document).ready(function() {
+        $('#start-playing').click(function () {
+            w3w.startGeoWatcher();
+        });
 
 
-    $('#stop-playing').click(function () {
-        w3w.stopGeoWatcher();
+        $('#stop-playing').click(function () {
+            w3w.stopGeoWatcher();
+        });
     });
 })();

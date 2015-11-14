@@ -32,14 +32,6 @@ var generateRandomString = function(length) {
   return text;
 };
 
-function cliAddress(req) {
-  return req.connection.remoteAddress || req.socket.remoteAddress || req.headers['x-forwarded-for'];
-}
-
-server.isLocal = function(request) {
-  return server.address() === cliAddress(req);
-}
-
 var stateKey = 'spotify_auth_state';
 
 var app = express();

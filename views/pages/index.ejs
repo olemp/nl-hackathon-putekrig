@@ -14,9 +14,25 @@
     <img src="https://play.spotify.edgekey.net/site/19b6d34/images/favicon.png">
     <h1>Putekrig</h1>
     <p>Play a song based on your location.</p>
-    <a data-ng-show="spotify_userdata" id="start-playing" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-triangle-right"></span> Start playing</a>
+    <a class="col-xs-12 btn btn-link" href="/guide">How does this work?</a>
+
     <a data-ng-hide="spotify_userdata" href="/login" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cloud"></span> Log in with Spotify</a>
+
+
+    <div data-ng-show="spotify_userdata && !playlist"  class="create-playlist-content col-xs-12">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Playlist name" aria-label="Enter desired playlist name">
+      </div>
+      <p>
+        Want more songs in your favorite playlist? Enter its name and Putekrig will add songs to it!
+        Or you could enter a hole new name and Putekrig will make a playlist for you from only the freshest ingredients.
+      </p>
+      <a id="start-playing" class=" btn btn-lg btn-default">Make playlist</a>
+    </div>
   </div>
+
+  <a data-ng-show="spotify_userdata && playlist" id="start-playing" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-triangle-right"></span> Start playing</a>
+
 </div>
 <div class="container">
   <div class="row">

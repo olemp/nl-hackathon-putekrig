@@ -170,19 +170,7 @@ var spot = {};
                 $('#loggedin').hide();
             }
         }
-
-
-        $("body").click(function() {
-            var iframe = $('iframe').contents();
-
-            if (iframe.find(".music-playing")[0]){
-                // Do something if class exists
-                alert("playing!");
-            } else {
-                // Do something if class does not exist
-                alert("paused!!!")
-            }
-        });
+        
     };
 
     return spot;

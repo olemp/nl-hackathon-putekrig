@@ -141,6 +141,13 @@ var spot = {};
 
         access_token = params.access_token;
         refresh_token = params.refresh_token;
+
+        try {
+            sessionStorage.setItem('spotify.access_token', access_token);
+            sessionStorage.setItem('spotify.refresh_token', refresh_token);
+        } catch(e) {};
+
+
         error = params.error;
 
         if (error) {
@@ -170,19 +177,7 @@ var spot = {};
                 $('#loggedin').hide();
             }
         }
-
-
-        $("body").click(function() {
-            var iframe = $('iframe').contents();
-
-            if (iframe.find(".music-playing")[0]){
-                // Do something if class exists
-                alert("playing!");
-            } else {
-                // Do something if class does not exist
-                alert("paused!!!")
-            }
-        });
+        
     };
 
     return spot;

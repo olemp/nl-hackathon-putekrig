@@ -1,5 +1,5 @@
 var app = angular.module('home', []);
-app.controller('mainCtrl', function($scope) {
+app.controller('mainCtrl', function($scope, Parse) {
 
 	$(document).on('userdata-loaded', function (){
 		$scope.spotify_userdata = JSON.parse(sessionStorage.getItem("spotify.userdata"));
@@ -19,6 +19,14 @@ app.controller('mainCtrl', function($scope) {
 
 	$scope.makePlaylist = function() {
 		spot.loadPlaylistWithName($scope.playlistName);
+		navigator.geolocation.getCurrentPosition(function(geo) {
+			Parse.provider('Trip/').create({ From: '{"latitude": "' + geo.coords.latitude + '" "longitude": "' + geo.coords.longitude + '"}' })
+				.success(function(data) {
+					sessionStorage.setItem("songwalk-trip-id", data.objectId);
+				}).
+				error(function(response) {
+					
+				});
+		});
 	};
-
 });

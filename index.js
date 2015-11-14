@@ -46,6 +46,9 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+app.get('/guide', function(request, response) {
+  response.render('pages/guide');
+});
 app.get('/history', function(request, response) {
   response.render('pages/history');
 });

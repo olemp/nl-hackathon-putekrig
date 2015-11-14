@@ -11,6 +11,9 @@ var spot = {};
     var embededPlayerTemplate,
         embededPlayerPlaceholder;
 
+    // Holds tracks that have been collected so far
+    var localPlaylist = [];
+
     var clientId;
     var playlistId;
 
@@ -119,6 +122,9 @@ var spot = {};
      * @param playlist
      */
     spot.addTrackToPlaylist = function (track) {
+        localPlaylist.push(track);
+        $(document).trigger('playlist-updated');
+
         $.ajax({
             url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists/'+playlistId+'/tracks?uris=' + track.uri,
             method : 'POST',
@@ -129,6 +135,15 @@ var spot = {};
         }).done(function() {
             renderEmbededPlaylist();
         });
+    };
+
+    /**
+     * Returns a clone of the list of tracks added so far
+     *
+     * @returns {Array.<T>}
+     */
+    spot.getPlaylist = function () {
+        return localPlaylist.slice();
     };
 
     spot.init = function() {
@@ -162,6 +177,7 @@ var spot = {};
                     success: function(response) {
                         try {
                             sessionStorage.setItem('spotify.userdata', JSON.stringify(response));
+                            $(document).trigger('userdata-loaded');
                         }catch(e){};
 
                         clientId = response.id;

@@ -167,6 +167,10 @@ var spot = {};
                         'Authorization': 'Bearer ' + access_token
                     },
                     success: function(response) {
+                        try {
+                            sessionStorage.setItem('spotify.userdata', JSON.stringify(response));
+                        }catch(e){};
+
                         userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                         clientId = response.id;
                         loadPlaylistId();
@@ -193,6 +197,11 @@ var spot = {};
                         access_token: access_token,
                         refresh_token: refresh_token
                     });
+
+                    try {
+                        sessionStorage.setItem('spotify.accessToken', access_token);
+                        sessionStorage.setItem('spotify.refreshToken', refresh_token);
+                    }catch (e) {};
                 });
             }, false);
         }

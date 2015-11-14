@@ -18,6 +18,19 @@ var redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your re
 var localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
+ * To support local development the argument l local or localhost
+ * can be added when starting the server
+ */
+
+var validArgs = ['l', 'local', 'localhost'],
+    isLocal = false;
+process.argv.forEach(function (val) {
+    if(validArgs.indexOf(val) !== -1) {
+        isLocal = true;
+    }
+});
+
+/**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
@@ -47,6 +60,9 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+app.get('/player', function(request, response) {
+  response.render('pages/player');
+});
 app.get('/guide', function(request, response) {
   response.render('pages/guide');
 });
@@ -71,7 +87,7 @@ app.get('/login', function(req, res) {
         response_type: 'code',
         client_id: client_id,
         scope: scope,
-        redirect_uri: req.ip === "127.0.0.1" ? localhost_redirect_uri : redirect_uri,
+        redirect_uri: isLocal ? localhost_redirect_uri : redirect_uri,
         state: state
       }));
 });

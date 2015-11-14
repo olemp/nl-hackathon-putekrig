@@ -18,9 +18,7 @@ app.controller('mainCtrl', function($scope) {
 	});
 
 	$scope.makePlaylist = function() {
-		if($scope.playlistName && $scope.playlistName.trim() !== '') {
-			spot.loadPlaylistWithName($scope.playlistName);
-		}
+		spot.loadPlaylistWithName($scope.playlistName);
 	};
 
 });

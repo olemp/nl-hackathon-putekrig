@@ -21,8 +21,8 @@
   <div class="row">
     <div class="col-md-6" data-ng-controller="latestTripsCtrl">
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
-      <ul>
-        <li data-ng-repeat="t in trips"><a data-ng-href="/history/{{t.objectId}}">From {{t.From}} to {{t.To}} playing {{t.Songs.length}} songs.</a></li>
+      <ul class="list-group">
+        <li class="list-group-item" data-ng-repeat="t in trips"><a data-ng-href="/history/{{t.objectId}}">From {{t.From}} to {{t.To}} playing {{t.Songs.length}} songs.</a></li>
       </ul>
     </div>
     <div class="col-md-6">

@@ -24,14 +24,14 @@
 
 
     <div data-ng-show="spotify_userdata && !playlist"  class="create-playlist-content col-xs-12">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Playlist name" aria-label="Enter desired playlist name">
-      </div>
       <p>
         Want more songs in your favorite playlist? Enter its name and Songwalk will add songs to it!
         Or you could enter a hole new name and Songwalk will make a playlist for you from only the freshest ingredients.
       </p>
-      <a id="start-playing" class=" btn btn-lg btn-default">Make playlist</a>
+      <div class="input-group col-xs-12">
+        <input type="text" class="form-control" placeholder="Songwalk" ng-model="playlistName" aria-label="Enter desired playlist name">
+      </div>
+      <a id="start-playing" class=" btn btn-lg btn-default" ng-click="makePlaylist()">Make playlist</a>
     </div>
   </div>
 

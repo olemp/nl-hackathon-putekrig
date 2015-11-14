@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="home">
 <head>
   <% include ../partials/header.ejs %>
+  <script type="text/javascript" src="/scripts/index.js"></script>
 </head>
 
-<body>
+<body data-ng-controller="mainCtrl">
 
   <% include ../partials/nav.ejs %>
 
@@ -13,14 +14,34 @@
     <img src="https://play.spotify.edgekey.net/site/19b6d34/images/favicon.png">
     <h1>Putekrig</h1>
     <p>Play a song based on your location.</p>
-    <a id="start-playing" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-triangle-right"></span> Start playing</a>
-    <a href="/login" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cloud"></span> Log in with Spotify</a>
+    <a data-ng-show="spotify_userdata" id="start-playing" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-triangle-right"></span> Start playing</a>
+    <a data-ng-hide="spotify_userdata" href="/login" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cloud"></span> Log in with Spotify</a>
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <div id="embeded-spotify-player"></div>
+    <div class="col-md-12">
+    <h3><span class="glyphicon glyphicon-play-circle"></span> Playlist</h3>
+      <table class="table striped">        
+      <thead>
+        <tr>
+          <th>Artist</th>
+          <th>Title</th>
+          <th>Album</th>
+          <th>Added</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="s in trip.Songs">
+          <td>Pink Floyd</td>
+          <td>Wish you were here</td>
+          <td>Wish you were here</td>
+          <td>12 minutes ago</td>
+          <td>4:43</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

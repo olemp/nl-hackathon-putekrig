@@ -60,6 +60,9 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+app.get('/player', function(request, response) {
+  response.render('pages/player');
+});
 app.get('/guide', function(request, response) {
   response.render('pages/guide');
 });

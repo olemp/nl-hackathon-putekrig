@@ -9,6 +9,7 @@ app.controller('mainCtrl', function($scope) {
 
 	$(document).on('playlist-updated', function() {
 		$scope.playlist = spot.getPlaylist();
+		$scope.playlistId = spot.getPlaylistId();
 		$scope.$apply();
 	});
 

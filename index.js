@@ -14,12 +14,13 @@ var cookieParser = require('cookie-parser');
 
 var client_id = 'a6c4c89a61034ee6bf237a1c973bbbc4'; // Your client id
 var client_secret = '95552dc7b3bb452d82ae156744921628'; // Your client secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your redirect uri
+var localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
- * @return {string} The generated s|tring
+ * @return {string} The generated string
  */
 var generateRandomString = function(length) {
   var text = '';
@@ -34,7 +35,7 @@ var generateRandomString = function(length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
-app.set('port', 8888);
+app.set('port', process.env.PORT || 8888);
 
 app.use(express.static(__dirname + '/public'))
     .use(cookieParser());
@@ -73,7 +74,7 @@ app.get('/login', function(req, res) {
         response_type: 'code',
         client_id: client_id,
         scope: scope,
-        redirect_uri: redirect_uri,
+        redirect_uri: req.ip === "127.0.0.1" ? localhost_redirect_uri : redirect_uri,
         state: state
       }));
 });

@@ -55,7 +55,10 @@
   </a>
 
   <a data-ng-show="stopped" class="btn btn-lg btn-default" href="http://open.spotify.com/user/{{spotify_userdata.id}}/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a>
-  <a data-ng-show="stopped" class="btn btn-sm btn-default" ng-click="restart()">Go again?</a>
+
+  <div data-ng-show="stopped" class="col-xs-12">
+    <a class="btn btn-sm btn-default" ng-click="restart()">Go again?</a>
+  </div>
 </div>
 <div class="container">
   <div class="row">

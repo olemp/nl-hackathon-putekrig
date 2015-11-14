@@ -8,9 +8,6 @@ var spot = {};
         refresh_token,
         error;
 
-    var embededPlayerTemplate,
-        embededPlayerPlaceholder;
-
     // Holds tracks that have been collected so far
     var localPlaylist = [];
 
@@ -40,6 +37,8 @@ var spot = {};
      * Gets the playlist ID for the given playlist, or creates it if it does not exist
      */
     spot.loadPlaylistWithName = function(name) {
+        localPlaylist = [];
+        
         $.ajax({
             url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists',
             data: {
@@ -146,27 +145,21 @@ var spot = {};
 
     spot.init = function() {
 
-        try {
-            access_token = sessionStorage.getItem('spotify.access_token');
-            refresh_token = sessionStorage.getItem('spotify.refresh_token');
-        } catch(e) {};
-
         var params = getHashParams();
-        if(!access_token) {
-            access_token = params.access_token;
-            refresh_token = params.refresh_token;
-
-            try {
-                sessionStorage.setItem('spotify.access_token', access_token);
-                sessionStorage.setItem('spotify.refresh_token', refresh_token);
-            } catch(e) {};
-        }
-
+        access_token = params.access_token;
+        refresh_token = params.refresh_token;
         error = params.error;
 
         if (error) {
             alert('There was an error during the authentication');
         } else {
+            if(!access_token) {
+                try {
+                    access_token = sessionStorage.getItem('spotify.access_token');
+                    refresh_token = sessionStorage.getItem('spotify.refresh_token');
+                } catch(e) {};
+            }
+
             if (access_token) {
                 $.ajax({
                     url: 'https://api.spotify.com/v1/me',
@@ -185,6 +178,11 @@ var spot = {};
                         $('#loggedin').show();
                     }
                 });
+
+                try {
+                    sessionStorage.setItem('spotify.access_token', access_token);
+                    sessionStorage.setItem('spotify.refresh_token', refresh_token);
+                } catch(e) {};
             } else {
                 // render initial screen
                 $('#login').show();

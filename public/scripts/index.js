@@ -29,4 +29,17 @@ app.controller('mainCtrl', function($scope, Parse) {
 				});
 		});
 	};
+<<<<<<< HEAD
+=======
+
+	$scope.stopAdding = function () {
+		$scope.stopped = true;
+	};
+
+	$scope.restart = function () {
+		$scope.playlist = undefined;
+		$scope.stopped = false;
+	};
+
+>>>>>>> 23e7b05cb5bd2d99348ce88ac9c3c74559157fec
 });

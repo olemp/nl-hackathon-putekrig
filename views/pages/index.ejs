@@ -51,17 +51,21 @@
     </div>
   </div>
 
-  <a data-ng-show="spotify_userdata && playlist" id="start-playing" class="btn btn-lg btn-default">
+  <a data-ng-show="spotify_userdata && playlist && !stopped" ng-click="stopAdding()" class="btn btn-lg btn-default">
     <span class="glyphicon glyphicon-stop"></span> Stop adding songs
   </a>
 
+  <a data-ng-show="stopped" class="btn btn-lg btn-default" href="http://open.spotify.com/user/{{spotify_userdata.id}}/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a>
+
+  <div id="go-again" data-ng-show="stopped" class="col-xs-12">
+    <a class="btn btn-sm btn-default" ng-click="restart()">Go again?</a>
+  </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-12" data-ng-show="playlist">
     <h3 class="col-xs-6"><span class="glyphicon glyphicon-music"></span> {{playlistName}}</h3>
-    <h3 class="col-xs-6 pull-right"><a ng-href="http://open.spotify.com/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a></h3>
-      <table class="table striped">
+    <table class="table striped">
       <thead>
         <tr>
           <th>Artist</th>

@@ -2,6 +2,11 @@
 <html data-ng-app="home">
 <head>
   <% include ../partials/header.ejs %>
+  <style type="text/css">
+    .jumbotron {
+      background-image: url('/img/jumbotron.jpg');
+    }
+  </style>
   <script type="text/javascript" src="/scripts/index.js"></script>
 </head>
 
@@ -11,8 +16,7 @@
 
 <div class="jumbotron text-center">
   <div class="container">
-    <img src="https://play.spotify.edgekey.net/site/19b6d34/images/favicon.png">
-    <h1>Putekrig</h1>
+    <h1>Songwalk</h1>
     <p>Play a song based on your location.</p>
     <a class="col-xs-12 btn btn-link" href="/guide">How does this work?</a>
 
@@ -24,8 +28,8 @@
         <input type="text" class="form-control" placeholder="Playlist name" aria-label="Enter desired playlist name">
       </div>
       <p>
-        Want more songs in your favorite playlist? Enter its name and Putekrig will add songs to it!
-        Or you could enter a hole new name and Putekrig will make a playlist for you from only the freshest ingredients.
+        Want more songs in your favorite playlist? Enter its name and Songwalk will add songs to it!
+        Or you could enter a hole new name and Songwalk will make a playlist for you from only the freshest ingredients.
       </p>
       <a id="start-playing" class=" btn btn-lg btn-default">Make playlist</a>
     </div>

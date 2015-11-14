@@ -55,6 +55,15 @@ app.controller('mainCtrl', function($scope, Parse) {
 	$scope.stopAdding = function () {
 		$scope.stopped = true;
 		w3w.stopGeoWatcher();
+		navigator.geolocation.getCurrentPosition(function(geo) {
+			Parse.provider('Trip/').edit(sessionStorage.getItem("songwalk-trip-id"), { To: '{"latitude": "' + geo.coords.latitude + '" "longitude": "' + geo.coords.longitude + '"}' })
+				.success(function(data) {
+					sessionStorage.removeItem("songwalk-trip-id");
+				}).
+				error(function(response) {
+					
+				});
+		});
 	};
 
 	$scope.restart = function () {

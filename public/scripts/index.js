@@ -25,4 +25,9 @@ app.controller('mainCtrl', function($scope) {
 		$scope.stopped = true;
 	};
 
+	$scope.restart = function () {
+		$scope.playlist = undefined;
+		$scope.stopped = false;
+	};
+
 });

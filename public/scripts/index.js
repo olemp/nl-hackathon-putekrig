@@ -1,8 +1,7 @@
 var app = angular.module('home', ['angularMoment']);
 app.filter('trackDuration', function() {
 	return function(ms) {
-		var duration = ms;
-		var milliseconds = (duration % 1000); duration = Math.floor(duration/1000);
+		var duration = Math.floor(ms/1000);
 		var seconds = (duration % 60); duration = Math.floor(duration/60);
 		var minutes = (duration % 60); duration = Math.floor(duration/60);
 		return minutes + ":" + seconds;
@@ -75,13 +74,14 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 			Parse.provider('Trip/').create({ 
 				From: location.display,
 				From_Coords: location.coords,
-				Songs: []
+				Songs: [],
+				username: JSON.parse(sessionStorage.getItem("spotify.userdata")).id || -1
 			})
 				.success(function(data) {
 					// Save trip ID
 					sessionStorage.setItem("songwalk-trip-id", data.objectId);
 					
-					// Start spotify job
+					// Start Spotify job
 					w3w.startGeoWatcher(onGetThreeWordsSuccess);
 				}).
 				error(function(response) {
@@ -96,7 +96,11 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 		Location.getCurrent(function(location) {			
 			Parse.provider('Trip/').edit(sessionStorage.getItem("songwalk-trip-id"), { 
 				To: location.display,
-				To_Coords: location.coords
+				To_Coords: location.coords,
+				endedAt: {
+					"__type": "Date",
+					"iso": new Date().toISOString()
+				}
 			})
 				.success(function(data) {
 					sessionStorage.removeItem("songwalk-trip-id");

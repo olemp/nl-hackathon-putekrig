@@ -38,20 +38,22 @@
         <tr>
           <th>Artist</th>
           <th>Title</th>
+          <th>Collected</th>
         </tr>
       </thead>
       <tbody>
         <tr data-ng-repeat="s in trip.Songs">
           <td>{{s.Artist}}</td>
           <td>{{s.Title}}</td>
+          <td>{{s.TimeAdded | amDateFormat:'MMM Do YYYY HH:mm'}}</td>
         </tr>
         </tbody>
       </table>
       
       <h3><span class="glyphicon glyphicon-time"></span> Time</h3>
       <ul class="list-group">
-          <li class="list-group-item"><b>Start</b><span class="pull-right">{{trip.createdAt}}</span></li>       
-          <li class="list-group-item"><b>End</b><span class="pull-right">{{trip.createdAt}}</span></li>       
+          <li class="list-group-item"><b>Start</b><span class="pull-right">{{trip.createdAt | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>       
+          <li class="list-group-item"><b>End</b><span class="pull-right">{{trip.createdAt | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>       
       </ul>
     </div>
   </div> <!-- row -->

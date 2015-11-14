@@ -4,6 +4,7 @@
   <% include ../partials/header.ejs %>  
   <link rel="stylesheet" type="text/css" href="/stylesheets/history.css"></script>
   <script type="text/javascript" src="/scripts/history.js"></script>
+  <script type="text/javascript" src="/scripts/parse.factory.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,11 @@
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
       <ul class="list-group">
         <li class="list-group-item" data-ng-repeat="t in trips">
-        <a data-ng-href="/history/{{t.objectId}}">From {{t.From}} to {{t.To}} playing {{t.Songs.length}} songs.</a>
+        <a data-ng-href="/history/{{t.objectId}}">
+          <b>From:</b> {{t.From}}<br />
+          <b>To:</b> {{t.To}}<br />
+          Collected {{t.Songs.length}} songs.
+        </a>
         <span class="pull-right" style="font-size:12px;"><span class="glyphicon glyphicon-calendar"></span> {{t.createdAt | amDateFormat:'MMMM Do YYYY'}}</span>
         </li>
       </ul>

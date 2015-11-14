@@ -1,4 +1,4 @@
-var app = angular.module('trip', ['uiGmapgoogle-maps']);
+var app = angular.module('trip', ['uiGmapgoogle-maps', 'angularMoment']);
 app.config(
     ['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
         GoogleMapApiProviders.configure({
@@ -18,6 +18,7 @@ app.controller('tripCtrl', function($scope, Parse) {
 			var firstSong = data.Songs[0];
 			
 			if(firstSong) {
+				// Setting center of map to the location of the first song
 				$scope.map.center = firstSong.Fetched_Coords;
 			}
 		}).

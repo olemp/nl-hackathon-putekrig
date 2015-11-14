@@ -178,6 +178,9 @@
 
         document.getElementById('test-playlist').addEventListener('click', function() {
           alert(playlistId);
+          if(playlistId != null) {
+            appendSongToPlaylist();
+          }
         }, false);
 
 
@@ -215,6 +218,21 @@
               'name': playlistName,
               'public' : false
             }),
+          }).done(function(data) {
+            playlistId = data.id;
+          });
+        }
+
+        function appendSongToPlaylist() {
+          $.ajax({
+            url: 'https://api.spotify.com/v1/users/'+clientId+'/playlists/'+playlistId+'/tracks?uris=spotify:track:47rw5vtSCVymXwGBQoPSDB',
+            method : 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + access_token
+            },
+            data: {
+
+            },
           }).done(function(data) {
             playlistId = data.id;
           });

@@ -8,6 +8,9 @@ app.controller('mainCtrl', function($scope) {
 	});
 
 	$(document).on('playlist-updated', function() {
+		if(!$scope.playlistName) {
+			$scope.playlistName = 'Songwalk';
+		}
 		$scope.playlist = spot.getPlaylist();
 		$scope.playlistId = spot.getPlaylistId();
 		$scope.$apply();

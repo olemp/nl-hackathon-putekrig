@@ -136,6 +136,10 @@ var spot = {};
         return localPlaylist.slice();
     };
 
+    spot.getPlaylistId = function () {
+        return playlistId;
+    };
+
     spot.init = function() {
         var params = getHashParams();
 

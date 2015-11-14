@@ -18,7 +18,7 @@
   <div class="container">
     <h1>Songwalk</h1>
     <p>Build playlists based on your location</p>
-    
+
     <a class="col-xs-12 btn btn-link" href="/guide">How does this work?</a>
 
     <a data-ng-hide="spotify_userdata" href="/login" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-cloud"></span> Log in with Spotify</a>
@@ -36,14 +36,17 @@
     </div>
   </div>
 
-  <a data-ng-show="spotify_userdata && playlist" id="start-playing" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-triangle-right"></span> Start playing</a>
+  <a data-ng-show="spotify_userdata && playlist" id="start-playing" class="btn btn-lg btn-default">
+    <span class="glyphicon glyphicon-square"></span> Stop adding songs
+  </a>
 
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-12" data-ng-show="playlist">
-    <h3><span class="glyphicon glyphicon-play-circle"></span> Playlist</h3>
-      <table class="table striped">        
+    <h3 class="col-xs-6">{{ playlistName }} </h3>
+    <h3 class="col-xs-6 pull-right"><a href="spotify:playlist:{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a></h3>
+      <table class="table striped">
       <thead>
         <tr>
           <th>Artist</th>

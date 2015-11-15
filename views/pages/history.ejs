@@ -28,8 +28,8 @@
       <ul class="list-group">
         <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt' | limitTo: 5" ng-click="navigateTo(t)" style="cursor:pointer;">
           <span>
-            <b>From:</b> {{t.From}}<br />
-            <b>To:</b> {{t.To}}<br />
+            <b>From:</b> {{t.From}} ({{t.createdAt | amDateFormat:'HH:mm'}})<br />
+            <b>To:</b> {{t.To}} ({{t.endedAt.iso | amDateFormat:'HH:mm'}})<br />
             <b>Songs collected:</b> {{t.Songs.length}}
           </span>
           <span class="pull-right" style="font-size:12px;">

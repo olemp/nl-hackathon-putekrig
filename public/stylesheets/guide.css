@@ -80,3 +80,7 @@ h4 span:not(.glyphicon) {
 .brands {
     margin-top: 35px;
 }
+
+.demo-video {
+    margin: 25px 0;
+}

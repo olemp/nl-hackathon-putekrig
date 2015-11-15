@@ -21,7 +21,7 @@
     <div class="col-md-6 latestTrips">
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
       <ul class="list-group">
-        <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt'" ng-click="navigateTo(t)" style="cursor:pointer;">
+        <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt' | limitTo: 5" ng-click="navigateTo(t)" style="cursor:pointer;">
           <span>
             <b>From:</b> {{t.From}}<br />
             <b>To:</b> {{t.To}}<br />

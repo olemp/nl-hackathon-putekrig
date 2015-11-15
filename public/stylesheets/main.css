@@ -38,6 +38,6 @@
     max-width: 100%;
 }
 
-#go-again {
-    margin-top: 10px;
+.table-responsive {
+    margin-bottom: 25px;
 }

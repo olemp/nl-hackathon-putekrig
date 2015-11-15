@@ -1,1 +1,32 @@
-.jumbotron,.jumbotron:hover{transition-property:background-size;transition-duration:10s;transition-timing-function:linear;transition-delay:.1s}.jumbotron{background:linear-gradient(rgba(10,0,0,.45),rgba(50,0,0,.45)),url(/img/jumbotron.jpg);background-size:100%}.jumbotron:hover{background-size:125%}.playlist-form{max-width:500px;width:80%;margin:auto}.playlist-form input{padding:22px 14px;font-size:22px}.playlist-form a{margin-top:5px;width:100%}.spotify-actions-content{max-width:400px;width:80%;margin:auto auto 50px}.spotify-actions-content a{margin-top:5px;width:100%}
+ .jumbotron {
+      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron.jpg');
+      background-size: cover;
+    }
+    .jumbotron:hover {
+
+    }
+    .playlist-form {
+      max-width: 500px;
+      width: 80%;
+      margin: auto;
+    }
+    .playlist-form input {
+      padding: 22px 14px;
+      font-size: 22px;
+    }
+    .playlist-form a {
+      margin-top: 5px;
+      width: 100%;
+    }
+    
+    .spotify-actions-content {
+        max-width: 400px;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+    
+    .spotify-actions-content a {
+      margin-top: 5px;
+      width: 100%;
+    }

@@ -2,6 +2,7 @@
     background: #532F8C;
     color: white;
     padding-bottom: 80px;
+    min-height: 233px;
 }
 
 .jumbotron .btn-primary {

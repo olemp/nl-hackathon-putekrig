@@ -6,7 +6,7 @@
 	border-color: #fff;
 }
 
-.latestTrips ul.list-group li:hover .trip-date-container {
+.latestTrips ul.list-group li:hover .songs-count-container {
 	background-color: #A5CCCC;
 }
 

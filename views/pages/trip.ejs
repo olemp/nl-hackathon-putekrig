@@ -18,19 +18,32 @@
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h3><span class="glyphicon glyphicon-map-marker"></span> On the map!</h3>
-      <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+  <div class="row fluid">
+    <div class="col-md-7 col-xs-7">    
+      <h3><span class="glyphicon glyphicon-map-marker"></span> On the map</h3>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events">
           <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Fetched_Coords" idKey="$index" events="map.markerEvents">
           </ui-gmap-marker>
       </ui-gmap-google-map>
+      
+      <h3><span class="glyphicon glyphicon-time"></span> Time</h3>
+      <ul class="list-group">
+          <li class="list-group-item"><b>Start</b><span class="pull-right">{{trip.createdAt | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>       
+          <li class="list-group-item"><b>End</b><span class="pull-right">{{trip.endedAt.iso | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>      
+          <li class="list-group-item"><b>Duration</b><span class="pull-right">{{trip.duration}}</span></li>       
+      </ul>
+      <button type="button" class="btn btn-danger" style="width:100%;margin-top:5px;" data-ng-click="delete()"> Delete trip</button>
+      <a href="/history" class="btn btn-info" style="width:100%;margin-top:5px;">Back to History</a>
+      <br/><br/>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5 col-xs-5">
       <h3><span class="glyphicon glyphicon-music"></span> Songs collected</h3>
       <table class="table striped">        
       <thead>
         <tr>
+          <th></th>
+          <th></th>
+          <th></th>
           <th>Artist</th>
           <th>Title</th>
           <th>Collected</th>
@@ -38,23 +51,18 @@
       </thead>
       <tbody>
         <tr data-ng-repeat="s in trip.Songs" data-ng-class="{ 'selected': selectedSong == $index }">
+          <td><a data-ng-href="{{trackLink(s)}}"><span class="glyphicon glyphicon-play-circle"></span></a></td>
+          <td><a href="javascript:void(0)" data-ng-click="centerMapOnSong(s, 11)"><span class="glyphicon glyphicon-map-marker"></span></a></td>
+          <td><a href="javascript:void(0)" data-ng-click="centerMapOnSong(s, 15)"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
           <td>{{s.Artist}}</td>
           <td>{{s.Title}}</td>
           <td>{{s.TimeAdded | amDateFormat:'MMM Do YYYY HH:mm'}}</td>
         </tr>
         </tbody>
-      </table>
-      
-      <h3><span class="glyphicon glyphicon-time"></span> Time</h3>
-      <ul class="list-group">
-          <li class="list-group-item"><b>Start</b><span class="pull-right">{{trip.createdAt | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>       
-          <li class="list-group-item"><b>End</b><span class="pull-right">{{trip.createdAt | amDateFormat:'MMM Do YYYY HH:mm'}}</span></li>       
-      </ul>
+      </table> 
       <button type="button" class="btn btn-success" style="width:100%;" data-ng-click="saveAsPlaylist()"> Save as playlist</button>
-      <button type="button" class="btn btn-danger" style="width:100%;margin-top:5px;" data-ng-click="delete()"> Delete trip</button>
-      <a href="/history" class="btn btn-info" style="width:100%;margin-top:5px;">Back to History</a>
     </div>
-  </div> <!-- row -->
+  </div>
 </div>
 
 

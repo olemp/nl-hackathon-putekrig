@@ -34,5 +34,7 @@ app.controller('historyCtrl', function($scope, Parse) {
 		
 	});
 	
-
+	$scope.navigateTo = function(trip) {
+		document.location.assign("/history/" + trip.objectId);
+	}
 });

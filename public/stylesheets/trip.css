@@ -7,3 +7,7 @@
       background-color: #B01302;
       color: #fff;
     }
+    .table tr.selected span {
+      background-color: #B01302;
+      color: #fff;
+    }

@@ -27,7 +27,7 @@
     <div data-ng-show="spotify_userdata && !playlist"  class="create-playlist-content col-xs-12">
       <p>
         Want more songs in your favorite playlist? Enter its name and Songwalk will add songs to it!
-        Or you could enter a hole new name and Songwalk will make a playlist for you from only the freshest ingredients.
+        Or you could enter a whole new name and Songwalk will make a playlist for you from only the freshest ingredients.
       </p>
       <div class="playlist-form">
         <div class="input-group col-xs-12">
@@ -42,7 +42,7 @@
     <span class="glyphicon glyphicon-stop"></span> Stop adding songs
   </a>
 
-  <a data-ng-show="stopped" class="btn btn-lg btn-default" href="http://open.spotify.com/user/{{spotify_userdata.id}}/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a>
+  <a data-ng-show="spotify_userdata && playlist" class="btn btn-lg btn-default" href="http://open.spotify.com/user/{{spotify_userdata.id}}/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a>
 
   <div id="go-again" data-ng-show="stopped" class="col-xs-12">
     <a class="btn btn-sm btn-default" ng-click="restart()">Go again?</a>

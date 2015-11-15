@@ -147,6 +147,8 @@ var spot = {};
         return playlistId;
     };
 
+
+
     spot.init = function() {
 
         var params = getHashParams();
@@ -196,6 +198,28 @@ var spot = {};
             }
         }
         
+    };
+
+
+    /////////////////////////////
+    // CONSOLE COMMAND HELPERS //
+    /////////////////////////////
+
+    // Clear session
+    spot.clearTokens = function() {
+        sessionStorage.clear();
+    };
+
+    // Trigger update of AT
+    spot.updateAccessToken = function() {
+        $.ajax({
+            url: '/refresh_token',
+            data: {
+                'refresh_token': refresh_token
+            }
+        }).done(function(data) {
+            console.log("AT updated: " + data.access_token);
+        });
     };
 
     return spot;

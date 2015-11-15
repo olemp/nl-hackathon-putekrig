@@ -23,7 +23,7 @@
     <a class="col-xs-12 btn btn-link" href="/guide" style="color:#fff"><span class="glyphicon glyphicon-question-sign"></span> How does this work?</a>
 
     <div data-ng-show="spotify_userdata && !playlist" class="create-playlist-content col-xs-12">
-      <p>
+      <p ng-hide="makingPlaylist">
         Want more songs in your favorite playlist? Enter its name and Songwalk will add songs to it!
         Or you could enter a whole new name and Songwalk will make a playlist for you from only the freshest ingredients.
       </p>

@@ -1,0 +1,15 @@
+ .jumbotron {
+      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron.jpg');
+    }
+    .playlist-form {
+      width: 400px;
+      margin: auto;
+    }
+    .playlist-form input {
+      padding: 22px 14px;
+      font-size: 22px;
+    }
+    .playlist-form a {
+      margin-top: 5px;
+      width: 100%;
+    }

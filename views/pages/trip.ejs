@@ -2,16 +2,10 @@
 <html data-ng-app="trip">
 <head>
   <% include ../partials/header.ejs %>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/trip.css"></script>
   <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   <script type="text/javascript" src="/scripts/trip.js"></script>
   <script type="text/javascript" src="/scripts/parse.factory.js"></script>
-  <style type="text/css">
-    .angular-google-map-container { height: 400px; }
-    .jumbotron {
-      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron.jpg');
-      background-size: cover;
-    }
-  </style>
 </head>
 
 <body data-ng-controller="tripCtrl">
@@ -28,7 +22,7 @@
     <div class="col-md-8">
       <h3><span class="glyphicon glyphicon-map-marker"></span> On the map!</h3>
       <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-          <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Fetched_Coords" idKey="$index">
+          <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Fetched_Coords" idKey="$index" events="map.markerEvents">
           </ui-gmap-marker>
       </ui-gmap-google-map>
     </div>
@@ -43,7 +37,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="s in trip.Songs">
+        <tr data-ng-repeat="s in trip.Songs" data-ng-class="{ 'selected': selectedSong == $index }">
           <td>{{s.Artist}}</td>
           <td>{{s.Title}}</td>
           <td>{{s.TimeAdded | amDateFormat:'MMM Do YYYY HH:mm'}}</td>

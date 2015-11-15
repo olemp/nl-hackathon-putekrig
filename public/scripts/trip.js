@@ -9,7 +9,15 @@ app.config(
 app.controller('tripCtrl', function($scope, Parse) {
 	$scope.map = { 
 		center: { latitude: 0, longitude: 0 }, 
-		zoom: 12
+		zoom: 12,
+		markerEvents: {
+			mouseover: function(e) {
+				$scope.selectedSong = e.key;
+			},
+			mouseout: function(e) {
+				$scope.selectedSong = -1;
+			}
+		}
 	};
 	
      Parse.provider('Trip/').get(document.location.pathname.split("/").slice(-1)[0])

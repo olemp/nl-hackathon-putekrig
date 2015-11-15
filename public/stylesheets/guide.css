@@ -1,0 +1,23 @@
+h4 span:not(.glyphicon) { padding-left: 10px; }
+    .guide-index {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      font-size: 34px;
+      background-color: #B01302;
+      width: 50px;
+      border-radius: 50%;
+      height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+    .jumbotron {
+      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron2.jpg');
+      background-size: cover;
+    }
+    .list-group li:hover {
+      background-color: #d3d3d3;
+    }
+    .list-group li:hover .guide-index {
+      background-color: #532F8C;
+    }

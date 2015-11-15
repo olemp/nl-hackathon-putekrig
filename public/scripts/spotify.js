@@ -32,6 +32,12 @@ var spot = {};
         }
         return hashParams;
     }
+    
+    function log(msg) {
+        if(console && console.log) {
+            console.log("SPOTIFY: " + msg)
+        }
+    }
 
     /**
      * Gets the playlist ID for the given playlist, or creates it if it does not exist
@@ -45,13 +51,12 @@ var spot = {};
                 'access_token': access_token
             }
         }).done(function(data) {
-
             var playlistName = name || "Songwalk";
             var listPlaylist = data.items;
             for(var i=0; i<listPlaylist.length; i++) {
                 if(listPlaylist[i].name == playlistName) {
                     playlistId = listPlaylist[i].id;
-                    console.log('Playlist ID', playlistId);
+                    log("Fetched playlist with ID " + playlistId);
                     return;
                 }
             }
@@ -78,8 +83,7 @@ var spot = {};
             }),
         }).done(function(data) {
             playlistId = data.id;
-            console.log('Playlist ID createCustom', playlistId);
-
+            log("Created playlist '" + playlistName + "' with ID " + playlistId + ".");
         });
     }
 
@@ -139,7 +143,7 @@ var spot = {};
     };
 
     spot.getPlaylistId = function () {
-        console.log('Get ID', playlistId);
+        log("Current playlist ID: " + playlistId);
         return playlistId;
     };
 
@@ -151,7 +155,7 @@ var spot = {};
         error = params.error;
 
         if (error) {
-            alert('There was an error during the authentication');
+            log('There was an error during the authentication');
         } else {
             if(!access_token) {
                 try {
@@ -167,10 +171,12 @@ var spot = {};
                         'Authorization': 'Bearer ' + access_token
                     },
                     success: function(response) {
+                        log("Successfully authenticated.");
                         try {
                             sessionStorage.setItem('spotify.userdata', JSON.stringify(response));
                             $(document).trigger('userdata-loaded');
-                        }catch(e){};
+                        }
+                        catch(e){};
 
                         clientId = response.id;
 

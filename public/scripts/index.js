@@ -4,7 +4,7 @@ app.filter('trackDuration', function() {
 		var duration = Math.floor(ms/1000);
 		var seconds = (duration % 60); duration = Math.floor(duration/60);
 		var minutes = (duration % 60); duration = Math.floor(duration/60);
-		return minutes + ":" + seconds;
+		return minutes + ":" + ((seconds.toString()).length == 1 ? "0" + seconds : seconds);
 	};
 })
 app.controller('mainCtrl', function($scope, Parse, Location) {

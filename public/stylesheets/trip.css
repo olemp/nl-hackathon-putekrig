@@ -1,0 +1,9 @@
+.angular-google-map-container { height: 400px; }
+    .jumbotron {
+      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron.jpg');
+      background-size: cover;
+    }
+    .table tr.selected {
+      background-color: #B01302;
+      color: #fff;
+    }

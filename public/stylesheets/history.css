@@ -36,3 +36,25 @@
 .songs-count-container .value {
 	font-size: 260%;
 }
+.latestTrips .list-group-item {
+    position: relative;
+}
+.latestTrips .list-group-item:after {
+    content: 'Songs';
+    color: #fff;
+    padding-left: 25px;
+    font-size: 10px;
+    background-color: red;
+    width: 120px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: -60px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg) translate3d(0,0,0);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

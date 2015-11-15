@@ -87,7 +87,7 @@ app.get('/login', function(req, res) {
         response_type: 'code',
         client_id: client_id,
         scope: scope,
-        redirect_uri: isLocal ? localhost_redirect_uri : redirect_uri,
+        redirect_uri: (isLocal ? localhost_redirect_uri : redirect_uri),
         state: state
       }));
 });
@@ -112,7 +112,7 @@ app.get('/callback', function(req, res) {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
-        redirect_uri: redirect_uri,
+        redirect_uri: (isLocal ? localhost_redirect_uri : redirect_uri),
         grant_type: 'authorization_code'
       },
       headers: {

@@ -2,6 +2,8 @@
 
 Songwalk is a service for Spotify that uses your location together with data from What3Words to build playlists for you.
 
+A live demo of Songwalk is available on http://rocky-spire-1608.herokuapp.com
+
 ## How does this work?
 
 Songwalk uses data from What3Words, and builds playlists with songs from Spotify using that data.

@@ -2,8 +2,12 @@
 	
 }
 .latestTrips ul.list-group li:hover {
-	background-color: #B01302;
+	background-color: #A5CCCC;
 	border-color: #fff;
+}
+
+.latestTrips ul.list-group li:hover .trip-date-container {
+	background-color: #A5CCCC;
 }
 
 .latestTrips ul.list-group li:hover a, .latestTrips ul.list-group li:hover span  {
@@ -22,8 +26,11 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin-right: 15px;
+	padding-left: 25px;
+	padding-right: 25px;
 	height: 100%;
+	background-color: #559999;
+	color: #fff;
 }
 .trip-date-container .day {
 	font-size: 225%;

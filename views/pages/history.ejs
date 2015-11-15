@@ -13,15 +13,20 @@
 
 <div class="jumbotron text-center">
   <div class="container">
-    <h1><span class="glyphicon glyphicon-signal"></span> History</h1>
+    <h1 ng-show="trips"><span class="glyphicon glyphicon-signal"></span> History</h1>
+    <div ng-hide="trips">
+      <span class="{{spinner}}">
+      </span>
+      <p style="padding-left: 5px;">Fetching history</p>
+    </div>
   </div>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row" ng-show="trips">
     <div class="col-md-6 latestTrips">
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
       <ul class="list-group">
-        <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt'" ng-click="navigateTo(t)" style="cursor:pointer;">
+        <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt' | limitTo: 5" ng-click="navigateTo(t)" style="cursor:pointer;">
           <span>
             <b>From:</b> {{t.From}}<br />
             <b>To:</b> {{t.To}}<br />

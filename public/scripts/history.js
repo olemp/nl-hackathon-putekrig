@@ -1,5 +1,7 @@
 var app = angular.module('history', ['angularMoment']);
-app.controller('historyCtrl', function($scope, Parse) {	
+app.controller('historyCtrl', function($scope, Parse) {
+	$scope.spinner = helpers.randomSpinner();
+	
 	try {
 		var username = JSON.parse(sessionStorage.getItem("spotify.userdata")).id;
 	} catch(e) {

@@ -17,6 +17,9 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	 * @param three
 	 */
 	function onGetThreeWordsSuccess(three) {
+		// Not making playlist anymore
+		$scope.makingPlaylist = false;
+		
 		Debug.log("Successfully pulled the words " + three.words.join(", ") + ".");
 		Debug.log("Search Spotify Database");
 		spot.search(three.words[0] + ' OR ' + three.words[1], function(response) {
@@ -127,10 +130,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	};
 
 	$scope.restart = function () {
-		Debug.log("Restarting.");
-		$scope.playlist = undefined;
-		$scope.stopped = false;
-		Debug.log("Restarted.");
+		document.location.href = document.location.href;
 	};
 
 });

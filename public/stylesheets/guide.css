@@ -10,6 +10,7 @@ h4 span:not(.glyphicon) { padding-left: 10px; }
       height: 50px;
       text-align: center;
       color: #fff;
+      display:none;
     }
     .jumbotron {
       background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron2.jpg');

@@ -19,7 +19,7 @@
 </div>
 <div class="container">
   <div class="row fluid">
-    <div class="col-md-7 col-xs-7">    
+    <div class="col-md-7 col-xs-12">    
       <h3><span class="glyphicon glyphicon-map-marker"></span> On the map</h3>
       <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events">
           <ui-gmap-marker data-ng-repeat="s in trip.Songs" coords="s.Fetched_Coords" idKey="$index" events="map.markerEvents">
@@ -36,7 +36,7 @@
       <a href="/history" class="btn btn-info" style="width:100%;margin-top:5px;">Back to History</a>
       <br/><br/>
     </div>
-    <div class="col-md-5 col-xs-5">
+    <div class="col-md-5 col-xs-12">
       <h3><span class="glyphicon glyphicon-music"></span> Songs collected</h3>
       <table class="table striped">        
       <thead>

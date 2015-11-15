@@ -7,6 +7,8 @@ app.config(
     }]
 )
 app.controller('tripCtrl', function($scope, Parse) {
+	$scope.spinner = helpers.randomSpinner();
+	
 		$scope.map = { 
 		center: { latitude: 0, longitude: 0 }, 
 		zoom: 11,

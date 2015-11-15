@@ -8,6 +8,7 @@ app.filter('trackDuration', function() {
 	};
 })
 app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
+	$scope.spinner = helpers.randomSpinner();
 
 	var lastTrackAdded;
 

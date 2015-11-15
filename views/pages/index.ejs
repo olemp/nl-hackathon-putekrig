@@ -26,11 +26,11 @@
         Want more songs in your favorite playlist? Enter its name and Songwalk will add songs to it!
         Or you could enter a whole new name and Songwalk will make a playlist for you from only the freshest ingredients.
       </p>
-      <div class="playlist-form">
+      <div class="playlist-form" ng-show="!makePlaylistClicked">
         <div class="input-group col-xs-12">
           <input type="text" class="form-control" placeholder="Songwalk" ng-model="playlistName" aria-label="Enter desired playlist name">
         </div>
-        <a class=" btn btn-lg btn-default" ng-click="makePlaylist()">Make playlist</a>
+        <a class=" btn btn-lg btn-default" ng-click="makePlaylist();">Make playlist</a>
       </div>
     </div>
   </div>

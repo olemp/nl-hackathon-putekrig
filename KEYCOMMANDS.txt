@@ -1,0 +1,3 @@
+heroku config:get SPOTIFY_CLIENT_ID -s  >> .env
+heroku config:get SPOTIFY_CLIENT_SECRET -s  >> .env
+heroku config:get W3W_SECRET -s  >> .env

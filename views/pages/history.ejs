@@ -29,14 +29,13 @@
         <li class="list-group-item" data-ng-repeat="t in trips | orderBy:'-endedAt' | limitTo: 5" ng-click="navigateTo(t)" style="cursor:pointer;">
           <span>
             <b>From:</b> {{t.From}} ({{t.createdAt | amDateFormat:'HH:mm'}})<br />
-            <b>To:</b> {{t.To}} ({{t.endedAt.iso | amDateFormat:'HH:mm'}})<br />
-            <b>Songs collected:</b> {{t.Songs.length}}
+            <b>To:</b> {{t.To}} ({{t.endedAt.iso | amDateFormat:'HH:mm'}})<br />>
+            <b>Date:</b> {{t.createdAt | amDateFormat:'MMM Do YYYY'}}
           </span>
           <span class="pull-right" style="font-size:12px;">
             <div class="trip-date-container">
                 <div class="trip-date">
-                  <div class="day">{{t.createdAt | amDateFormat:'DD'}}</div>
-                  <div class="month">{{t.createdAt | amDateFormat:'MMM'}}</div>
+                  <div class="day">{{t.Songs.length}}</div>
                 </div>
             </div>
           </span>

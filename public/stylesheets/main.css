@@ -41,3 +41,7 @@
 .table-responsive {
     margin-bottom: 25px;
 }
+
+body {
+    padding-bottom: 55px;
+}

@@ -1,24 +1,82 @@
-h4 span:not(.glyphicon) { padding-left: 10px; }
-    .guide-index {
-      position: absolute;
-      right: 6px;
-      top: 6px;
-      font-size: 34px;
-      background-color: #B01302;
-      width: 50px;
-      border-radius: 50%;
-      height: 50px;
-      text-align: center;
-      color: #fff;
-      display:none;
-    }
-    .jumbotron {
-      background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron2.jpg');
-      background-size: cover;
-    }
-    .list-group li:hover {
-      background-color: #d3d3d3;
-    }
-    .list-group li:hover .guide-index {
-      background-color: #532F8C;
-    }
+h4 span:not(.glyphicon) {
+    padding-left: 10px;
+}
+
+.guide-index {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    font-size: 34px;
+    background-color: #B01302;
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    display: none;
+}
+
+.jumbotron {
+    background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron2.jpg');
+    background-size: cover;
+}
+
+.list-group li:hover {
+    background-color: transparent;
+}
+
+.list-group-item {
+    float: left;
+    padding: 7px 15px;
+    width: 100%;
+}
+
+.list-group-item-icon {
+    position: absolute;
+    width: 58px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 12px 15px;
+    font-size: 28px;
+    color: #fff;
+}
+
+.list-group-item-content {
+    margin-left: 55px;
+}
+
+.list-group-item-icon,
+.list-group-item-content {
+    float: left;
+}
+
+.list-group-item:nth-of-type(1) .list-group-item-icon {
+    background-color: #CC289E;
+}
+
+.list-group-item:nth-of-type(2) .list-group-item-icon {
+    background-color: #FF587D;
+}
+
+.list-group-item:nth-of-type(3) .list-group-item-icon {
+    background-color: #19FF7E;
+}
+
+.list-group-item:nth-of-type(4) .list-group-item-icon {
+    padding-top: 10px;
+    background-color: #559999;
+}
+
+.list-group-item:nth-of-type(5) .list-group-item-icon {
+    background-color: #A5CCCC;
+}
+
+.guide {
+    margin-bottom: 85px;
+    margin-top: 25px;
+}
+
+.brands {
+    margin-top: 35px;
+}

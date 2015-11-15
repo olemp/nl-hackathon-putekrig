@@ -19,6 +19,7 @@
         max-width: 400px;
         width: 80%;
         margin: auto;
+        margin-bottom: 50px;
     }
     
     .spotify-actions-content a {

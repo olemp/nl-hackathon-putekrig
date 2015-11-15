@@ -4,6 +4,7 @@
   <% include ../partials/header.ejs %>
   <link rel="stylesheet" type="text/css" href="/stylesheets/index.css"></link>
   <link rel="stylesheet" type="text/css" href="/stylesheets/spinners.css"></link>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/equalizer.css"></link>
   <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   <script type="text/javascript" src="/scripts/index.js"></script>
   <script type="text/javascript" src="/scripts/parse.factory.js"></script>
@@ -46,6 +47,36 @@
     <a data-ng-show="spotify_userdata && playlist && !stopped" ng-click="stopAdding()" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-stop"></span> Stop adding songs</a>
     <a data-ng-show="spotify_userdata && playlist" class="btn btn-lg btn-default" href="http://open.spotify.com/user/{{spotify_userdata.id}}/playlist/{{playlistId}}"><span class="glyphicon glyphicon-play-circle"></span> Open in Spotify</a>
     <a data-ng-show="stopped" data-ng-click="restart()" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-repeat"></span> Go again?</a>
+  </div>
+
+  <div class="equalizer-animation">
+    <div class="equaliser-container">
+      <ol class="equaliser-column">
+        <li class="colour-bar"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+        <li class="led-mask"></li>
+      </ol>
+    </div>
+
   </div>
 </div>
 <div class="container">

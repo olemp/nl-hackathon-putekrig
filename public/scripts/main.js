@@ -7,5 +7,6 @@
     'use strict';
     $(document).ready(function() {
         spot.init();
+        nav.updateActive();
     });
 })();

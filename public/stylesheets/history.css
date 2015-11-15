@@ -14,3 +14,7 @@
 	color: #666;
 	text-decoration: none !important;
 }
+
+.jumbotron {
+	background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron3.jpg');
+}

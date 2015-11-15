@@ -130,10 +130,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	};
 
 	$scope.restart = function () {
-		Debug.log("Restarting.");
-		$scope.playlist = undefined;
-		$scope.stopped = false;
-		Debug.log("Restarted.");
+		document.location.href = document.location.href;
 	};
 
 });

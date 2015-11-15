@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = 'a6c4c89a61034ee6bf237a1c973bbbc4'; // Your client id
 var client_secret = '95552dc7b3bb452d82ae156744921628'; // Your client secret
+var w3w_secret = 'QC7EIE5R'; // w3w secret
 var redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your redirect uri
 var localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
@@ -71,6 +72,16 @@ app.get('/history', function(request, response) {
 });
 app.get('/history/:id', function(request, response) {
   response.render('pages/trip');
+});
+
+// w3w stuff
+app.get('/w3w', function(request, response) {
+  res.redirect('https://api.what3words.com/position' +
+      querystring.stringify({
+        lang: 'en',
+        key: w3w_secret,
+        position: request.query.lat + ',' + request.query.lon
+      }));
 });
 
 // Spotify stuff

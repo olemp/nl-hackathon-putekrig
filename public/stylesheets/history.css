@@ -39,13 +39,14 @@
 }
 .latestTrips .list-group-item {
     position: relative;
+    overflow:hidden;
 }
 .latestTrips .list-group-item:after {
     content: 'Songs';
     color: #fff;
     padding-left: 25px;
     font-size: 10px;
-    background-color: red;
+    background-color: #FF587D;
     width: 120px;
     height: 20px;
     display: block;

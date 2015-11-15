@@ -21,7 +21,7 @@ var w3w = {};
      * @param onGetPosition Function that gets called whenever getThreeWords returns successfully
      */
     w3w.startGeoWatcher = function(onGetPosition) {
-        var pollingInterval = sessionStorage.getItem("songwalk-polling-interval");
+        var pollingInterval = 6000;
         console.log("### Pull #" + (polls+1) + " ###");
         if ('geolocation' in navigator) {
             // geolocation is available

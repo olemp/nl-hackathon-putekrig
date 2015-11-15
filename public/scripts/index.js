@@ -92,11 +92,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 					// Save trip ID
 					sessionStorage.setItem("songwalk-trip-id", data.objectId);
 					Debug.log("Trip with ID '" + data.objectId + "' successfully created and persisted as 'songwalk-trip-id' in sessionStorage.");
-					
-					var pollingInterval = 1000;
-					Debug.log("Setting polling interval to " + pollingInterval + ".")
-					sessionStorage.setItem("songwalk-polling-interval", pollingInterval.toString());
-					
+
 					// Start Spotify job
 					w3w.startGeoWatcher(onGetThreeWordsSuccess);
 					Debug.log("Starting Spotify Job");

@@ -13,3 +13,13 @@
       margin-top: 5px;
       width: 100%;
     }
+    
+    .spotify-actions-content {
+        width: 50%;
+        margin: auto;
+    }
+    
+    .spotify-actions-content a {
+      margin-top: 5px;
+      width: 25%;
+    }

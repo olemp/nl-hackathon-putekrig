@@ -31,9 +31,9 @@
 	height: 100%;
 	background-color: #559999;
 	color: #fff;
-	min-width: 105px;
+	min-width: 85px;
     text-align: right;
 }
 .songs-count-container .value {
-	font-size: 400%;
+	font-size: 260%;
 }

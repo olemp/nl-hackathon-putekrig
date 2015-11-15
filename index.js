@@ -6,6 +6,8 @@
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
+// Load variables from .env
+require('dotenv').load();
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
@@ -13,9 +15,9 @@ var http = require('http');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = 'a6c4c89a61034ee6bf237a1c973bbbc4'; // Your client id
-var client_secret = '95552dc7b3bb452d82ae156744921628'; // Your client secret
-var w3w_secret = 'QC7EIE5R'; // w3w secret
+var client_id = process.env.SPOTIFY_CLIENT_ID;
+var client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+var w3w_secret = process.env.W3W_SECRET;
 var redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your redirect uri
 var localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 

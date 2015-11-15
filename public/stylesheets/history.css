@@ -22,7 +22,7 @@
 .jumbotron {
 	background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron3.jpg');
 }
- .trip-date-container {
+ .songs-count-container {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -32,9 +32,6 @@
 	background-color: #559999;
 	color: #fff;
 }
-.trip-date-container .day {
+.songs-count-container .value {
 	font-size: 225%;
-}
-.trip-date-container .month {
-	font-size: 135%;
 }

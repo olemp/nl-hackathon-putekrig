@@ -32,7 +32,7 @@ app.controller('tripCtrl', function($scope, Parse) {
 			// Calculcates duration
 			var duration = moment.duration(moment(data.endedAt.iso).diff(moment(data.createdAt)));
 			console.log(duration);
-			$scope.trip.duration = "Approx " + ((parseInt(duration.asHours()) > 0 ) ? duration.asHours().toFixed(0) + " hour(s), " : "");
+			$scope.trip.duration = "Approx " + ((parseInt(duration.asHours()) > 0 ) ? duration.asHours().toFixed(0) + " hour(s), " : duration.asMinutes().toFixed(0) + " minute(s)");
 			
 			var firstSong = data.Songs[0];
 		

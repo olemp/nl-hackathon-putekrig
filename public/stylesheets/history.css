@@ -18,3 +18,16 @@
 .jumbotron {
 	background: linear-gradient(rgba(10, 0, 0, 0.45), rgba(50, 0, 0, 0.45)), url('/img/jumbotron3.jpg');
 }
+ .trip-date-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 15px;
+	height: 100%;
+}
+.trip-date-container .day {
+	font-size: 225%;
+}
+.trip-date-container .month {
+	font-size: 135%;
+}

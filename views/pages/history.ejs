@@ -27,7 +27,14 @@
             <b>To:</b> {{t.To}}<br />
             Collected {{t.Songs.length}} songs.
           </span>
-          <span class="pull-right" style="font-size:12px;"><span class="glyphicon glyphicon-calendar"></span> {{t.createdAt | amDateFormat:'MMMM Do YYYY'}}</span>
+          <span class="pull-right" style="font-size:12px;">
+            <div class="trip-date-container">
+                <div class="trip-date">
+                  <div class="day">{{t.createdAt | amDateFormat:'DD'}}</div>
+                  <div class="month">{{t.createdAt | amDateFormat:'MMM'}}</div>
+                </div>
+            </div>
+          </span>
         </li>
         <li class="list-group-item" style="background-color:#B01302;color:#fff;font-size:16px;" ng-show="trips.length == 0">
           <span class="glyphicon glyphicon-heart-empty"></span>

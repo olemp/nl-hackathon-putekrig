@@ -52,26 +52,28 @@
   <div class="row">
     <div class="col-md-12" data-ng-show="playlist">
     <h3 class="col-xs-6"><span class="glyphicon glyphicon-music"></span> {{playlistName}}</h3>
-    <table class="table striped">
-      <thead>
-        <tr>
-          <th>Artist</th>
-          <th>Title</th>
-          <th>Album</th>
-          <th>Added</th>
-          <th>Duration</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-ng-repeat="track in playlist">
-          <td>{{ track.artists[0].name }}</td>
-          <td>{{ track.name }}</td>
-          <td>{{ track.album.name }}</td>
-          <td>{{ track.timeAdded | amDateFormat:'MMM Do YYYY HH:mm' }}</td>
-          <td>{{ track.duration_ms | trackDuration }}</td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="table-responsive">
+      <table class="table striped">
+        <thead>
+          <tr>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Album</th>
+            <th>Added</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="track in playlist">
+            <td>{{ track.artists[0].name }}</td>
+            <td>{{ track.name }}</td>
+            <td>{{ track.album.name }}</td>
+            <td>{{ track.timeAdded | amDateFormat:'MMM Do YYYY HH:mm' }}</td>
+            <td>{{ track.duration_ms | trackDuration }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

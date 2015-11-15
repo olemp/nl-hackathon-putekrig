@@ -8,7 +8,7 @@ app.service('Location', [function() {
 						"latitude": coords.lat,
 						"longitude": coords.lng
 					},
-					"display": results[0].formatted_address
+					"display": results[0].formatted_address.split(",")[0]
 				});
 			});
 		});

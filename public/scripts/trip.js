@@ -16,7 +16,7 @@ app.controller('tripCtrl', function($scope, Parse) {
 		.success(function(data) {
 			$scope.trip = data;
 			var firstSong = data.Songs[0];
-			
+		
 			if(firstSong) {
 				// Setting center of map to the location of the first song
 				$scope.map.center = firstSong.Fetched_Coords;
@@ -25,4 +25,14 @@ app.controller('tripCtrl', function($scope, Parse) {
 		error(function(response) {
 			
 		});
+		
+	$scope.delete = function(obj) {
+		 Parse.provider('Trip/').delete($scope.trip.objectId)
+		.success(function(data) {
+			document.location.href = "/history";
+		}).
+		error(function(response) {
+			
+		});
+	}
 });

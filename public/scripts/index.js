@@ -132,7 +132,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	};
 
 	$scope.restart = function () {
-		document.location.href = document.location.href;
+		document.location.href = document.location.origin;
 	};
 
 });

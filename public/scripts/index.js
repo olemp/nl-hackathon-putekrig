@@ -82,6 +82,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	});
 
 	$scope.makePlaylist = function() {
+		eq.show();
 		$scope.makingPlaylist = true;
 		spot.loadPlaylistWithName($scope.playlistName);
 		Location.getCurrent(function(location) {	
@@ -107,6 +108,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	};
 	
 	$scope.stopAdding = function () {
+		eq.hide();
 		$scope.stopped = true;
 		w3w.stopGeoWatcher();
 		Location.getCurrent(function(location) {
@@ -130,7 +132,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	};
 
 	$scope.restart = function () {
-		document.location.href = document.location.href;
+		document.location.href = document.location.origin;
 	};
 
 });

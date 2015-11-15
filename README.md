@@ -1,18 +1,38 @@
-# Songwalk
+# node-js-getting-started
 
-Songwalk is a service for Spotify that uses your location together with data from What3Words to build playlists for you.
+A barebones Node.js app using [Express 4](http://expressjs.com/).
 
-## How does this work?
+This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
-Songwalk uses data from What3Words, and builds playlists with songs from Spotify using that data.
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-What3Words maps the world as a grid of 3 by 3 meter squares where each square is given three unique words that identify it.
-Songwalk uses your position to get the three words that belong to it from What3Words, and then searches for songs in Spotify using those words. The highest-ranking song that Spotify finds is added to your playlist.
+## Running Locally
 
-## How was it made?
+Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
-Songwalk was made in 24 hours at the Netlight Hackathon - PAD THAI by Ole Martin Pettersen, Olav Hermansen, and William Killerud - also known as Team Putekrig.
+```sh
+$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
+$ cd node-js-getting-started
+$ npm install
+$ npm start
+```
 
-Songwalk was built using a mix of Express.js, AngularJS, jQuery, and Handlebars, as well as a dash of Bootstrap.
-The code is pretty messy in places, which is what happens when trying to put together pieces from three different projects with three slightly different stacks. But hey, it works!
+Your app should now be running on [localhost:5000](http://localhost:5000/).
 
+## Deploying to Heroku
+
+```
+$ heroku create
+$ git push heroku master
+$ heroku open
+```
+
+## Documentation
+
+For more information about using Node.js on Heroku, see these Dev Center articles:
+
+- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
+- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
+- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
+- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)

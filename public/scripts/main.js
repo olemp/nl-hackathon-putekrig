@@ -8,5 +8,6 @@
     $(document).ready(function() {
         spot.init();
         nav.updateActive();
+        eq.init();
     });
 })();

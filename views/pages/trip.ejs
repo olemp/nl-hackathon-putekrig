@@ -14,8 +14,13 @@
 
 <div class="jumbotron text-center">
   <div class="container">
-    <h1>Trip from {{trip.From}} to {{trip.To}}</h1>
-    <p><span class="glyphicon glyphicon-time"></span> {{trip.createdAt | amDateFormat:'MMMM Do YYYY HH:mm'}}</p>
+    <h1 ng-show="trip">Trip from {{trip.From}} to {{trip.To}}</h1>
+    <p ng-show="trip"><span class="glyphicon glyphicon-time"></span> {{trip.createdAt | amDateFormat:'MMMM Do YYYY HH:mm'}}</p>
+    <div ng-hide="trip">
+      <span class="{{spinner}}">
+      </span>
+      <p style="padding-left: 5px;">Fetching trip</p>
+    </div>
   </div>
 </div>
 <div class="container">

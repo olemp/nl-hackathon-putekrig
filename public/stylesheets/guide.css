@@ -72,6 +72,11 @@ h4 span:not(.glyphicon) {
     background-color: #A5CCCC;
 }
 
+.guide {
+    margin-bottom: 85px;
+    margin-top: 25px;
+}
+
 .brands {
-    margin-top: 115px;
+    margin-top: 35px;
 }

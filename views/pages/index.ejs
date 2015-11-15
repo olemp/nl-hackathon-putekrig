@@ -20,7 +20,7 @@
     <h1>Songwalk</h1>
     <p>Build playlists based on your location</p>
 
-    <a class="col-xs-12 btn btn-link" href="/guide" style="color:#fff"><span class="glyphicon glyphicon-question-sign"></span> How does this work?</a>
+    <a ng-hide="makingPlaylist" class="col-xs-12 btn btn-link" href="/guide" style="color:#fff"><span class="glyphicon glyphicon-question-sign"></span> How does this work?</a>
 
     <div data-ng-show="spotify_userdata && !playlist" class="create-playlist-content col-xs-12">
       <p ng-hide="makingPlaylist">

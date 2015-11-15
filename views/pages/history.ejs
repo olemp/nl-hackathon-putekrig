@@ -7,7 +7,7 @@
   <script type="text/javascript" src="/scripts/parse.factory.js"></script>
 </head>
 
-<body>
+<body data-ng-controller="historyCtrl">
 
 <% include ../partials/nav.ejs %>
 
@@ -18,7 +18,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 latestTrips" data-ng-controller="latestTripsCtrl">
+    <div class="col-md-6 latestTrips">
       <h3><span class="glyphicon glyphicon-pushpin"></span> Latest trips</h3>
       <ul class="list-group">
         <li class="list-group-item" data-ng-repeat="t in trips">
@@ -29,12 +29,20 @@
         </a>
         <span class="pull-right" style="font-size:12px;"><span class="glyphicon glyphicon-calendar"></span> {{t.createdAt | amDateFormat:'MMMM Do YYYY'}}</span>
         </li>
+        <li class="list-group-item" style="background-color:#B01302;color:#fff;font-size:16px;" ng-show="trips.length == 0">
+          <span class="glyphicon glyphicon-heart-empty"></span>
+          <i>You have no recent trips.</i>
+        </li>
       </ul>
     </div>
-    <div class="col-md-6" data-ng-controller="statisticsCtrl">
+    <div class="col-md-6">
       <h3><span class="glyphicon glyphicon-object-align-bottom"></span> Statistics</h3>
       <ul class="list-group">
-          <li class="list-group-item" data-ng-repeat="(key, value) in statistics"><b>{{key}}</b><span class="pull-right">{{value}}</span></li>       
+          <li class="list-group-item" data-ng-repeat="(key, value) in statistics"><b>{{key}}</b><span class="pull-right">{{value}}</span></li> 
+          <li class="list-group-item" style="background-color:#B01302;color:#fff;font-size:16px;" ng-show="!statistics">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+            <i>No statistics available</i>
+          </li>      
       </ul>
     </div>
   </div> <!-- row -->

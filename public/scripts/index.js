@@ -16,7 +16,6 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 	 * @param three
 	 */
 	function onGetThreeWordsSuccess(three) {
-		console.log(three);
 		spot.search(three.words[0] + ' OR ' + three.words[1], function(response) {
 			var trackToAdd = response.tracks.items[0];
 
@@ -75,7 +74,7 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 				From: location.display,
 				From_Coords: location.coords,
 				Songs: [],
-				username: JSON.parse(sessionStorage.getItem("spotify.userdata")).id || -1
+				username: $scope.spotify_userdata.id || -1
 			})
 				.success(function(data) {
 					// Save trip ID
@@ -85,7 +84,7 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 					w3w.startGeoWatcher(onGetThreeWordsSuccess);
 				}).
 				error(function(response) {
-					
+					// TODO: Failed to create trip
 				});
 		});		
 	};
@@ -106,7 +105,7 @@ app.controller('mainCtrl', function($scope, Parse, Location) {
 					sessionStorage.removeItem("songwalk-trip-id");
 				}).
 				error(function(response) {
-					
+					// TODO: Failed to stop trip
 				});
 		});
 	};

@@ -1,22 +1,38 @@
 var app = angular.module('history', ['angularMoment']);
-app.controller('latestTripsCtrl', function($scope, Parse) {	
+app.controller('historyCtrl', function($scope, Parse) {	
+	try {
+		var username = JSON.parse(sessionStorage.getItem("spotify.userdata")).id;
+	} catch(e) {
+		
+	}
+	
     Parse.provider('Trip/').getAll()
 	.success(function(data) {
-		$scope.trips = data.results;
+		$scope.trips = jQuery.grep(data.results, function(val) {
+			return (val.username == username && val.endedAt)	
+		});
+		
+		if($scope.trips.length > 0) {
+				var totalSongs = 0;
+				$scope.trips.forEach(function(trip) {
+					totalSongs += trip.Songs.length;
+				});
+			
+				$scope.statistics = {
+					"Total trips": $scope.trips.length,
+					"Total songs added": totalSongs,
+					"Trips this week": $scope.trips.length,
+					"Songs this week": totalSongs,
+					"Trips this month": $scope.trips.length,
+					"Songs this month": totalSongs,
+					"Trips this year": $scope.trips.length,
+					"Songs this year": totalSongs
+				};
+		}
 	}).
 	error(function(response) {
 		
 	});
-});
-app.controller('statisticsCtrl', function($scope) {
-    $scope.statistics = {
-		"Total trips": 148,
-		"Songs added": 5430,
-		"Trips this week": 5,
-		"Songs this week": 9,
-		"Trips this month": 12,
-		"Songs this month": 19,
-		"Trips this year": 30,
-		"Songs this year": 600
-	};
+	
+
 });

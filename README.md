@@ -1,31 +1,23 @@
-# node-js-getting-started
+# Songwalk
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+Songwalk is a service for Spotify that uses your location together with data from What3Words to build playlists for you.
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+A live demo of Songwalk is available on http://rocky-spire-1608.herokuapp.com
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+## How does this work?
 
-## Running Locally
+Songwalk uses data from What3Words, and builds playlists with songs from Spotify using that data.
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+What3Words maps the world as a grid of 3 by 3 meter squares where each square is given three unique words that identify it.
+Songwalk uses your position to get the three words that belong to it from What3Words, and then searches for songs in Spotify using those words. The highest-ranking song that Spotify finds is added to your playlist.
 
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
+## How was it made?
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Songwalk was made in 24 hours at the Netlight Hackathon - PAD THAI by Ole Martin Pettersen, Olav Hermansen, and William Killerud - also known as Team Putekrig.
 
-## Deploying to Heroku
+Songwalk was built using a mix of Express.js, AngularJS, jQuery, and Handlebars, as well as a dash of Bootstrap.
+The code is pretty messy in places, which is what happens when trying to put together pieces from three different projects with three slightly different stacks. But hey, it works!
 
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
 
 ## Documentation
 

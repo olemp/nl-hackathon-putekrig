@@ -7,7 +7,7 @@
 }
 
 .latestTrips ul.list-group li:hover .songs-count-container {
-	background-color: #A5CCCC;
+	color: #fff;
 }
 
 .latestTrips ul.list-group li:hover a, .latestTrips ul.list-group li:hover span  {
@@ -29,8 +29,7 @@
 	padding-left: 25px;
 	padding-right: 25px;
 	height: 100%;
-	background-color: #559999;
-	color: #fff;
+	color: #666;
 	min-width: 85px;
     text-align: right;
 }

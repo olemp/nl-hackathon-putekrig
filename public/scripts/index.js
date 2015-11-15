@@ -78,7 +78,7 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	});
 
 	$scope.makePlaylist = function() {
-		$scope.makePlaylistClicked = true;
+		$scope.makingPlaylist = true;
 		spot.loadPlaylistWithName($scope.playlistName);
 		Location.getCurrent(function(location) {	
 			Parse.provider('Trip/').create({ 

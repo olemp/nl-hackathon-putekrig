@@ -3,7 +3,6 @@
 <head>
   <% include ../partials/header.ejs %>
   <link rel="stylesheet" type="text/css" href="/stylesheets/guide.css"></script>
-  <script type="text/javascript" src="/scripts/guide.js"></script>
 </head>
 
 <body data-ng-controller="guideCtrl">
@@ -17,11 +16,74 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
       <ul class="list-group">
-        <li class="list-group-item" data-ng-repeat="g in guides"><h4><span class="glyphicon glyphicon-{{g.glyphicon}}"></span> <span>{{g.body}}</span></h4><div class="guide-index pull-right">1</div><div class="guide-index pull-right">{{$index+1}}</div></li>  
+        <li class="list-group-item">
+          <div class="list-group-item-icon">
+            <span class="glyphicon glyphicon-play-circle"></span>
+          </div>
+          <div class="list-group-item-content">
+            <h4 class="list-group-item-heading">Name your playlist</h4>
+            <p class="list-group-item-text">Give your playlist a name, or enter the name of a playlist you already have to add songs to it</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-icon">
+            <span class="glyphicon glyphicon-road"></span>
+          </div>
+          <div class="list-group-item-content">
+            <h4 class="list-group-item-heading">Start moving</h4>
+            <p class="list-group-item-text">Songwalk gives you a new song when your location changes, so get moving!</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-icon">
+            <span class="glyphicon glyphicon-time"></span>
+          </div>
+          <div class="list-group-item-content">
+            <h4 class="list-group-item-heading">Don't rush</h4>
+            <p class="list-group-item-text">Songwalk looks for a new song once every minute, so take your time - don't rush</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-icon">
+            <span class="glyphicon glyphicon-stop"></span>
+          </div>
+          <div class="list-group-item-content">
+            <h4 class="list-group-item-heading">Stop and listen</h4>
+            <p class="list-group-item-text">Once you're happy, stop adding new songs and open your new playlist in Spotify</p>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="list-group-item-icon">
+            <span class="glyphicon glyphicon-floppy-save"></span>
+          </div>
+          <div class="list-group-item-content">
+            <h4 class="list-group-item-heading">Keep track of your tracks</h4>
+            <p class="list-group-item-text">Your session is stored together with your songs on the <a href="/history">History</a> page</p>
+          </div>
+        </li>
       </ul>
     </div>
+  </div>
+  <div class="row brands">
+    <div class="col-xs-12">
+      <a href="http://what3words.com/"><img class="col-xs-6" src="/img/what3words.png" alt="What3Words logo. Songwalk was built using What3Words." /></a>
+      <a href="https://www.spotify.com/"><img class="col-xs-6" src="/img/spotify.png" alt="Spotify logo. Songwalk was built using Spotify." /></a>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-xs-12">
+          <h3>Wait, so how does this work?</h3>
+          <p>
+            Songwalk uses data from What3Words, and builds playlists with songs from Spotify using that data.
+          </p>
+          <p>
+            What3Words maps the world as a grid of 3 by 3 meter squares where each square is given three unique words that identify it.
+            Songwalk uses those words to search for songs in Spotify. The highest-ranking song that Spotify finds is added to your playlist.
+          </p>
+          <p>Each place has its own song. Where's yours?</p>
+      </div>
   </div>
 </div>
 

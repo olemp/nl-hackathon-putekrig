@@ -20,10 +20,12 @@ app.controller('mainCtrl', function($scope, Parse, Location, Debug) {
 	function onGetThreeWordsSuccess(three) {
 		// Not making playlist anymore
 		$scope.makingPlaylist = false;
+
+		var words = three.words.split(".");
 		
-		Debug.log("Successfully pulled the words " + three.words.join(", ") + ".");
+		Debug.log("Successfully pulled the words " + words.join(", ") + ".");
 		Debug.log("Search Spotify Database");
-		spot.search(three.words[0] + ' OR ' + three.words[1], function(response) {
+		spot.search(words[0] + ' OR ' + words[1], function(response) {
 			Debug.log("Spotify search returned " + response.tracks.items.length + " results.");
 			var trackToAdd = response.tracks.items[0];
 			Debug.log("Picking the first result item.");

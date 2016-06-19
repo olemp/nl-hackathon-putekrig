@@ -11,7 +11,7 @@ require('dotenv').load();
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
-var http = require('http');
+var https = require('https');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
@@ -79,7 +79,7 @@ app.get('/history/:id', function (request, response) {
 
 // w3w stuff
 app.get('/w3w', function (request, response) {
-    http.get('http://api.what3words.com/position?key=' + w3w_secret + '&lang=en&position=' + request.query.lat + ',' + request.query.lon,
+    https.get('https://api.what3words.com/v2/reverse?key=' + w3w_secret + '&lang=en&coords=' + request.query.lat + ',' + request.query.lon,
         function (res) {
             response.setHeader('Content-Type', 'application/json');
             response.writeHead(res.statusCode);

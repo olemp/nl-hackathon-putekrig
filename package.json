@@ -1,6 +1,6 @@
 {
   "name": "node-js-getting-started",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "request": "~2.34.0"
   },
   "engines": {
-    "node": "0.12.7"
+    "node": "8.1.4"
   },
   "repository": {
     "type": "git",

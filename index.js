@@ -9,39 +9,33 @@
 // Load variables from .env
 require('dotenv').load();
 
-var express = require('express'); // Express web server framework
-var request = require('request'); // "Request" library
-var https = require('https');
-var querystring = require('querystring');
-var cookieParser = require('cookie-parser');
+const express = require('express'); // Express web server framework
+const request = require('request'); // "Request" library
+const https = require('https');
+const querystring = require('querystring');
+const cookieParser = require('cookie-parser');
 
-var client_id = process.env.SPOTIFY_CLIENT_ID;
-var client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-var w3w_secret = process.env.W3W_SECRET;
-var redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your redirect uri
-var localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const w3w_secret = process.env.W3W_SECRET;
+const redirect_uri = 'https://rocky-spire-1608.herokuapp.com/callback'; // Your redirect uri
+const localhost_redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
  * To support local development the argument l local or localhost
  * can be added when starting the server
  */
-
-var validArgs = ['l', 'local', 'localhost'],
-    isLocal = false;
-process.argv.forEach(function (val) {
-    if (validArgs.indexOf(val) !== -1) {
-        isLocal = true;
-    }
-});
+const validArgs = ['l', 'local', 'localhost'];
+const isLocal = process.argv.some(arg => validArgs.includes(arg));
 
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
-var generateRandomString = function (length) {
-    var text = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateRandomString(length) {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (var i = 0; i < length; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -49,9 +43,9 @@ var generateRandomString = function (length) {
     return text;
 };
 
-var stateKey = 'spotify_auth_state';
+const stateKey = 'spotify_auth_state';
 
-var app = express();
+const app = express();
 app.set('port', process.env.PORT || 8888);
 
 app.use(express.static(__dirname + '/public'))
@@ -61,30 +55,30 @@ app.use(express.static(__dirname + '/public'))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function (request, response) {
+app.get('/', (request, response) => {
     response.render('pages/index');
 });
-app.get('/player', function (request, response) {
+app.get('/player', (request, response) => {
     response.render('pages/player');
 });
-app.get('/guide', function (request, response) {
+app.get('/guide', (request, response) => {
     response.render('pages/guide');
 });
-app.get('/history', function (request, response) {
+app.get('/history', (request, response) => {
     response.render('pages/history');
 });
-app.get('/history/:id', function (request, response) {
+app.get('/history/:id', (request, response) => {
     response.render('pages/trip');
 });
 
 // w3w stuff
-app.get('/w3w', function (request, response) {
+app.get('/w3w', (request, response) => {
     https.get('https://api.what3words.com/v2/reverse?key=' + w3w_secret + '&lang=en&coords=' + request.query.lat + ',' + request.query.lon,
         function (res) {
             response.setHeader('Content-Type', 'application/json');
             response.writeHead(res.statusCode);
 
-            var responseBody = '';
+            let responseBody = '';
             res.on('data', function (chunk) {
                 responseBody += chunk;
             });
@@ -101,13 +95,13 @@ app.get('/w3w', function (request, response) {
 
 // Spotify stuff
 
-app.get('/login', function (req, res) {
+app.get('/login', (req, res) => {
 
-    var state = generateRandomString(16);
+    const state = generateRandomString(16);
     res.cookie(stateKey, state);
 
     // your application requests authorization
-    var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative';
+    const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -118,14 +112,14 @@ app.get('/login', function (req, res) {
         }));
 });
 
-app.get('/callback', function (req, res) {
+app.get('/callback', (req, res) => {
 
     // your application requests refresh and access tokens
     // after checking the state parameter
 
-    var code = req.query.code || null;
-    var state = req.query.state || null;
-    var storedState = req.cookies ? req.cookies[stateKey] : null;
+    const code = req.query.code || null;
+    const state = req.query.state || null;
+    const storedState = req.cookies ? req.cookies[stateKey] : null;
 
     if (state === null || state !== storedState) {
         res.redirect('/#' +
@@ -134,7 +128,7 @@ app.get('/callback', function (req, res) {
             }));
     } else {
         res.clearCookie(stateKey);
-        var authOptions = {
+        const authOptions = {
             url: 'https://accounts.spotify.com/api/token',
             form: {
                 code: code,
@@ -147,20 +141,20 @@ app.get('/callback', function (req, res) {
             json: true
         };
 
-        request.post(authOptions, function (error, response, body) {
+        request.post(authOptions, (error, response, body) => {
             if (!error && response.statusCode === 200) {
 
-                var access_token = body.access_token,
-                    refresh_token = body.refresh_token;
+                const access_token = body.access_token;
+                const refresh_token = body.refresh_token;
 
-                var options = {
+                const options = {
                     url: 'https://api.spotify.com/v1/me',
                     headers: {'Authorization': 'Bearer ' + access_token},
                     json: true
                 };
 
                 // use the access token to access the Spotify Web API
-                request.get(options, function (error, response, body) {
+                request.get(options, (error, response, body) => {
                     console.log(body);
                 });
 
@@ -180,11 +174,11 @@ app.get('/callback', function (req, res) {
     }
 });
 
-app.get('/refresh_token', function (req, res) {
+app.get('/refresh_token', (req, res) => {
 
     // requesting access token from refresh token
-    var refresh_token = req.query.refresh_token;
-    var authOptions = {
+    const refresh_token = req.query.refresh_token;
+    const authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         headers: {'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))},
         form: {
@@ -194,9 +188,9 @@ app.get('/refresh_token', function (req, res) {
         json: true
     };
 
-    request.post(authOptions, function (error, response, body) {
+    request.post(authOptions, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-            var access_token = body.access_token;
+            const access_token = body.access_token;
             res.send({
                 'access_token': access_token
             });
@@ -205,8 +199,6 @@ app.get('/refresh_token', function (req, res) {
 });
 
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'));
 });
-
-
